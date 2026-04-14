@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Rega & Safa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --aqua-soft: #A1E3E2;
+            --aqua-dark: #2F5D5E;
+            --white: #ffffff;
+        }
+        body {
+            margin: 0; padding: 0; font-family: 'Montserrat', sans-serif;
+            background-color: var(--white); color: var(--aqua-dark);
+            text-align: center; overflow-x: hidden;
+        }
+        header {
+            background: linear-gradient(to bottom, var(--aqua-soft), var(--white));
+            padding: 80px 20px;
+        }
+        h1 { font-family: 'Great Vibes', cursive; font-size: 3.5rem; margin: 10px 0; }
+        .date { font-weight: 300; letter-spacing: 3px; text-transform: uppercase; }
+        
+        section { padding: 50px 20px; }
+        .btn {
+            background-color: var(--aqua-dark); color: white;
+            padding: 12px 25px; text-decoration: none; border-radius: 25px;
+            display: inline-block; margin-top: 20px; font-size: 0.9rem;
+        }
+
+        /* Musik Player */
+        #music-container {
+            position: fixed; bottom: 20px; right: 20px; z-index: 1000;
+        }
+        #play-btn {
+            width: 50px; height: 50px; background: var(--aqua-soft);
+            border-radius: 50%; border: none; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Buku Tamu Simple */
+        .guestbook input, .guestbook textarea {
+            width: 100%; max-width: 300px; padding: 10px; margin: 10px 0;
+            border: 1px solid var(--aqua-soft); border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <p class="date">The Wedding Of</p>
+        <h1>Rega & Safa</h1>
+        <p>Minggu, 29 Juli 2026</p>
+    </header>
+
+    <section>
+        <h2>Akad Nikah</h2>
+        <p>Pukul 08.00 WIB - Selesai</p>
+        <p>Kami mengundang Anda untuk menyaksikan momen bahagia kami.</p>
+        <a href="https://maps.app.goo.gl/ZnKrc9zoNU5Xhy517" target="_blank" class="btn">📍 Lihat Lokasi Acara</a>
+    </section>
+
+    <hr style="width: 50%; border: 0.5px solid var(--aqua-soft);">
+
+    <section class="guestbook">
+        <h2>Buku Tamu</h2>
+        <p>Berikan doa restu untuk kami:</p>
+        <input type="text" placeholder="Nama Anda"><br>
+        <textarea placeholder="Pesan Doa"></textarea><br>
+        <button class="btn" onclick="alert('Terima kasih atas doanya!')">Kirim Pesan</button>
+    </section>
+
+    <div id="music-container">
+        <button id="play-btn" onclick="toggleMusic()">🎵</button>
+        <audio id="myAudio" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        var audio = document.getElementById("myAudio");
+        var isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+            isPlaying = !isPlaying;
+        };
+
+        // Otomatis play saat scroll pertama kali (kebijakan browser)
+        window.addEventListener('scroll', function() {
+            if(!isPlaying) { toggleMusic(); }
+        }, { once: true });
+    </script>
+
+</body>
+</html>
