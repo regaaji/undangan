@@ -64,18 +64,27 @@
 <body class="text-slate-800 leading-relaxed">
 
     <div id="cover">
-        <div class="text-center px-6" data-aos="fade-up">
-            <p class="uppercase tracking-[0.3em] text-xs mb-4 text-blue-700 font-semibold">The Wedding of</p>
-            <h1 class="font-aesthetic text-6xl md:text-8xl text-blue-600 mb-6">Rega & Safa</h1>
-            <div class="mb-8">
-                <p class="text-sm italic mb-2">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-                <h3 id="guest-name" class="font-bold text-2xl text-slate-700 underline decoration-blue-300 underline-offset-8">[Nama Tamu]</h3>
+    <div class="text-center px-6" data-aos="fade-up">
+        <p class="uppercase tracking-[0.3em] text-[10px] md:text-xs mb-4 text-blue-700 font-semibold">The Wedding of</p>
+        
+        <h1 class="font-aesthetic text-5xl md:text-8xl text-blue-600 mb-6 leading-tight px-2">
+            Rega & Safa
+        </h1>
+        
+        <div class="mb-8">
+            <p class="text-xs md:text-sm italic mb-2 text-slate-500">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+            <div class="max-w-[280px] md:max-w-md mx-auto">
+                <h3 id="guest-name" class="font-bold text-xl md:text-3xl text-slate-700 underline decoration-blue-300 underline-offset-8 break-words">
+                    [Nama Tamu]
+                </h3>
             </div>
-            <button onclick="startInvitation()" class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full shadow-2xl transform transition hover:scale-105 active:scale-95">
-                <i class="fas fa-envelope-open-text mr-2"></i> BUKA UNDANGAN
-            </button>
         </div>
+
+        <button onclick="startInvitation()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 md:px-10 md:py-4 rounded-full shadow-2xl transform transition hover:scale-105 active:scale-95 text-sm md:text-base font-semibold">
+            <i class="fas fa-envelope-open-text mr-2"></i> BUKA UNDANGAN
+        </button>
     </div>
+</div>
 
     <audio id="music" loop>
         <source src="https://www.mboxdrive.com/Beautiful%20In%20White.mp3" type="audio/mpeg">
