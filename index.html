@@ -82,14 +82,21 @@
         }
 
         /* Bingkai Foto Lingkaran dengan nuansa Wayang */
-        /* Bingkai Foto Lingkaran nuansa Wayang */
-        .photo-frame-wayang {
-            width: 11rem; height: 11rem; /* w-44 h-44 */
-            border-radius: 50%; overflow: hidden; flex-shrink: 0; background-color: white;
+     .photo-frame-wayang {
+            w-44 h-44 md:w-56 md:h-56 rounded-full overflow-hidden flex-shrink-0 bg-white;
             position: relative;
             border: 8px solid white;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
+        .photo-frame-wayang::after {
+            content: "";
+            position: absolute;
+            inset: -10px;
+            border: 2px solid var(--blue-medium);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+        
         /* Hero Image */
         .hero-img { height: 100dvh; object-fit: cover; width: 100%; }
 
