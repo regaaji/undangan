@@ -97,47 +97,48 @@
 </head>
 <body class="bg-pattern-wayang leading-relaxed">
 
-    <div id="row-cover" class="fixed inset-0 z-[9999] flex items-center justify-center bg-blue-50/80 backdrop-blur-sm overflow-hidden transition-all duration-1000 ease-in-out">
+  <div id="cover" class="fixed inset-0 z-[9999] flex items-center justify-center bg-blue-50/90 backdrop-blur-md overflow-hidden transition-all duration-1000 ease-in-out">
     
-    <div class="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none z-0">
-        <img src="gunungan.png" alt="Gunungan" class="w-[85%] md:w-[45%] object-contain filter hue-rotate(190deg) brightness(1.5) saturate(0.5)">
+    <div class="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none z-0">
+        <img src="gunungan.png" alt="Gunungan" class="w-[90%] md:w-[50%] object-contain filter hue-rotate(190deg) brightness(1.4) saturate(0.6)">
     </div>
 
     <div class="text-center px-6 relative z-10 w-full flex flex-col items-center" data-aos="fade-up">
         
-        <div class="mb-4" data-aos="zoom-in" data-aos-delay="200">
-            <img src="rama-shinta.png" alt="Rama Shinta" class="w-40 md:w-64 object-contain filter drop-shadow-md">
+        <div class="mb-2" data-aos="zoom-in" data-aos-delay="200">
+            <img src="rama-shinta.png" alt="Rama Shinta" class="w-44 md:w-72 object-contain filter drop-shadow-lg">
         </div>
 
         <div class="mb-6" data-aos="fade-down" data-aos-delay="400">
             <div class="flex items-center justify-center gap-4">
-                <div class="h-[1px] w-8 bg-blue-200"></div>
-                <h2 class="font-aesthetic text-4xl md:text-5xl text-blue-400 drop-shadow-sm tracking-wider">
+                <div class="h-[1.5px] w-10 bg-blue-900/20"></div>
+                <h2 class="font-aesthetic text-5xl md:text-6xl text-blue-900 drop-shadow-sm tracking-wide">
                     The Wedding of
                 </h2>
-                <div class="h-[1px] w-8 bg-blue-200"></div>
+                <div class="h-[1.5px] w-10 bg-blue-900/20"></div>
             </div>
         </div>
         
-        <h1 class="font-aesthetic text-6xl md:text-8xl text-blue-600 mb-10 leading-tight drop-shadow-lg">
+        <h1 class="font-aesthetic text-7xl md:text-9xl text-blue-600 mb-10 leading-tight drop-shadow-xl">
             Rega & Safa
         </h1>
         
         <div class="mb-12 w-full" data-aos="fade-up" data-aos-delay="600">
-            <p class="text-[10px] md:text-xs text-blue-400 uppercase tracking-[0.3em] mb-3">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+            <p class="text-[11px] md:text-sm text-blue-900 font-semibold uppercase tracking-[0.3em] mb-3 opacity-70">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
             
-            <div class="max-w-[280px] md:max-w-md mx-auto">
-                <h3 id="guest-name" class="font-bold text-2xl md:text-4xl text-blue-900 italic border-b border-blue-200/50 pb-2 px-4 bg-white/30 rounded-t-lg">
+            <div class="max-w-[300px] md:max-w-md mx-auto">
+                <h3 id="guest-name" class="font-bold text-3xl md:text-5xl text-slate-900 italic border-b-2 border-blue-900/30 pb-2 px-4 bg-white/40 backdrop-blur-sm rounded-t-2xl shadow-inner">
                     [Nama Tamu]
                 </h3>
             </div>
         </div>
 
-        <button onclick="startInvitation()" class="relative z-30 bg-blue-500/90 hover:bg-blue-600 text-white px-10 py-3.5 rounded-full shadow-xl transition active:scale-95 text-xs font-semibold tracking-[0.2em] flex items-center gap-2 mx-auto backdrop-blur-md border border-white/20">
+        <button onclick="startInvitation()" class="relative z-30 bg-blue-600 hover:bg-blue-700 text-white px-12 py-4 rounded-full shadow-2xl transition active:scale-95 text-xs font-bold tracking-[0.2em] flex items-center gap-2 mx-auto border border-white/30 transform hover:scale-105">
             <i class="fas fa-envelope-open-text mr-1"></i> BUKA UNDANGAN
         </button>
     </div>
 </div>
+
 
 
     <audio id="music" loop>
