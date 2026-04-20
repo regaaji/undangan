@@ -97,49 +97,53 @@
 </head>
 <body class="bg-pattern-wayang leading-relaxed">
 
-  <div id="cover" class="fixed inset-0 z-[9999] flex items-center justify-center bg-blue-50/90 backdrop-blur-md overflow-hidden transition-all duration-1000 ease-in-out">
+ <div id="cover" class="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-50 backdrop-blur-sm overflow-hidden transition-all duration-1000 ease-in-out">
     
-    <div class="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none z-0">
-        <img src="gunungan.png" alt="Gunungan" class="w-[90%] md:w-[50%] object-contain filter hue-rotate(190deg) brightness(1.4) saturate(0.6)">
+    <div class="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none z-0">
+        <img src="gunungan.png" alt="Gunungan" class="w-[90%] md:w-[50%] object-contain filter sepia(100%) brightness(1.1) saturate(0.8)">
     </div>
 
-    <div class="text-center px-6 relative z-10 w-full flex flex-col items-center" data-aos="fade-up">
+    <div class="text-center px-6 relative z-10 w-full flex flex-col items-center gap-12" data-aos="fade-up">
         
-        <div class="mb-2" data-aos="zoom-in" data-aos-delay="200">
-            <img src="rama-shinta.png" alt="Rama Shinta" class="w-44 md:w-72 object-contain filter drop-shadow-lg">
-        </div>
-
-        <div class="mb-6" data-aos="fade-down" data-aos-delay="400">
-            <div class="flex items-center justify-center gap-4">
-                <div class="h-[1.5px] w-10 bg-blue-900/20"></div>
-                <h2 class="font-aesthetic text-5xl md:text-6xl text-blue-900 drop-shadow-sm tracking-wide">
+        <div class="mb-6 w-full" data-aos="fade-down" data-aos-delay="200">
+            <p class="uppercase tracking-[0.5em] text-[10px] md:text-xs text-slate-500 font-semibold mb-3 not-italic block">
+                Selamat Datang di
+            </p>
+            
+            <div class="relative inline-block border-t border-b border-slate-200 py-3 px-2">
+                <h2 class="font-aesthetic text-5xl md:text-7xl text-blue-950 leading-tight tracking-wide drop-shadow-sm">
                     The Wedding of
                 </h2>
-                <div class="h-[1.5px] w-10 bg-blue-900/20"></div>
+            </div>
+            
+            <div class="flex justify-center items-center gap-3 mt-4">
+                <div class="h-[1px] w-16 bg-slate-200"></div>
+                <i class="fas fa-seedling text-slate-300 text-xs"></i>
+                <div class="h-[1px] w-16 bg-slate-200"></div>
             </div>
         </div>
         
-        <h1 class="font-aesthetic text-7xl md:text-9xl text-blue-600 mb-10 leading-tight drop-shadow-xl">
+        <h1 class="font-aesthetic text-6xl md:text-9xl text-blue-600 mb-10 leading-tight px-2 break-words">
             Rega & Safa
         </h1>
         
-        <div class="mb-12 w-full" data-aos="fade-up" data-aos-delay="600">
-            <p class="text-[11px] md:text-sm text-blue-900 font-semibold uppercase tracking-[0.3em] mb-3 opacity-70">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+        <div class="mb-14 w-full" data-aos="fade-up" data-aos-delay="400">
+            <p class="text-[11px] md:text-sm text-slate-600 mb-4 tracking-normal not-italic block w-full">
+                Kepada Yth. Bapak/Ibu/Saudara/i:
+            </p>
             
-            <div class="max-w-[300px] md:max-w-md mx-auto">
-                <h3 id="guest-name" class="font-bold text-3xl md:text-5xl text-slate-900 italic border-b-2 border-blue-900/30 pb-2 px-4 bg-white/40 backdrop-blur-sm rounded-t-2xl shadow-inner">
+            <div class="max-w-[280px] md:max-w-md mx-auto px-2 border-b-2 border-blue-200 pb-3">
+                <h3 id="guest-name" class="font-bold text-2xl md:text-4xl text-slate-800 break-words font-serif italic text-blue-950">
                     [Nama Tamu]
                 </h3>
             </div>
         </div>
 
-        <button onclick="startInvitation()" class="relative z-30 bg-blue-600 hover:bg-blue-700 text-white px-12 py-4 rounded-full shadow-2xl transition active:scale-95 text-xs font-bold tracking-[0.2em] flex items-center gap-2 mx-auto border border-white/30 transform hover:scale-105">
+        <button onclick="startInvitation()" class="relative z-30 bg-blue-600 hover:bg-blue-700 text-white px-12 py-4 rounded-full shadow-2xl transition active:scale-95 text-sm font-semibold tracking-widest flex items-center gap-2 mx-auto transform hover:scale-105">
             <i class="fas fa-envelope-open-text mr-1"></i> BUKA UNDANGAN
         </button>
     </div>
 </div>
-
-
 
     <audio id="music" loop>
         <source src="beautiful-in-white.mp3" type="audio/mpeg">
