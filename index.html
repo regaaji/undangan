@@ -97,43 +97,39 @@
 </head>
 <body class="bg-pattern-wayang leading-relaxed">
 
-    <div id="cover" class="fixed inset-0 z-[9999] flex flex-col justify-center bg-gradient-to-b from-blue-50 to-white overflow-hidden transition-all duration-1000 ease-in-out px-4 py-8">
+    <div id="cover" class="fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-b from-blue-50 to-white overflow-hidden transition-all duration-1000 ease-in-out">
     
-    <div class="absolute top-0 left-0 w-full h-[8vh] pointer-events-none opacity-20 z-0" data-aos="fade-down">
-        <img src="frame-wayang.jpg" alt="Frame Atas" class="w-full h-full object-cover object-top scale-x-110">
+    <div class="absolute inset-0 flex flex-col items-center justify-center opacity-20 pointer-events-none z-0">
+        <img src="gunungan.png" alt="Gunungan" class="w-[80%] md:w-[40%] object-contain mb-[-150px] md:mb-[-200px] filter brightness(1.1)">
+        
+        <img src="rama-shinta.jpg" alt="Rama Shinta" class="w-[60%] md:w-[30%] object-contain">
     </div>
 
-    <div class="text-center relative z-10 w-full flex-grow flex flex-col items-center justify-center gap-12" data-aos="fade-up">
+    <div class="text-center px-6 relative z-10 w-full" data-aos="fade-up">
         
-        <div class="flex items-end justify-center gap-1.5 md:gap-3 w-full max-w-lg mb-8" data-aos="zoom-in" data-aos-delay="200">
-            <div class="w-20 md:w-32 opacity-80 filter brightness(1.2)">
-                <img src="gunungan.png" alt="Wayang Left" class="w-full object-contain">
-            </div>
-            <div class="w-28 md:w-44 shadow-sm pb-2 filter sepia(50%) brightness(1.1)">
-                <img src="gunungan.png" alt="Wayang Center" class="w-full object-contain">
-            </div>
-            <div class="w-20 md:w-32 opacity-80 filter brightness(1.2)">
-                <img src="gunungan.png" alt="Wayang Right" class="w-full object-contain">
+        <div class="mb-6" data-aos="fade-down" data-aos-delay="200">
+            <p class="uppercase tracking-[0.5em] text-[10px] md:text-xs text-blue-800 font-semibold mb-3">Selamat Datang di</p>
+            
+            <div class="relative inline-block">
+                <div class="absolute -left-12 top-1/2 -translate-y-1/2 h-[1px] w-10 bg-blue-200 hidden md:block"></div>
+                
+                <h2 class="font-aesthetic text-4xl md:text-6xl text-blue-950 leading-tight tracking-wide drop-shadow-sm">
+                    The Wedding of
+                </h2>
+                
+                <div class="absolute -right-12 top-1/2 -translate-y-1/2 h-[1px] w-10 bg-blue-200 hidden md:block"></div>
             </div>
         </div>
-
-        <div class="mb-6 w-full" data-aos="fade-down" data-aos-delay="400">
-            <p class="uppercase tracking-[0.4em] text-[10px] md:text-xs text-blue-950 font-semibold mb-3 not-italic block">
-                The Wedding of
-            </p>
-            
-            <h1 class="font-aesthetic text-6xl md:text-8xl text-blue-600 mb-8 leading-tight tracking-wide px-2 break-words">
-                Rega & Safa
-            </h1>
-        </div>
         
-        <div class="mb-14 w-full" data-aos="fade-up" data-aos-delay="600">
-            <p class="text-[11px] md:text-sm text-slate-500 mb-4 tracking-normal not-italic block w-full">
-                Kepada Yth. Bapak/Ibu/Saudara/i:
-            </p>
+        <h1 class="font-aesthetic text-6xl md:text-8xl text-blue-600 mb-10 leading-tight">
+            Rega & Safa
+        </h1>
+        
+        <div class="mb-12 w-full">
+            <p class="text-[11px] md:text-sm text-slate-500 mb-3 tracking-normal">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
             
-            <div class="max-w-[280px] md:max-w-md mx-auto px-2 border-b border-blue-100 pb-3">
-                <h3 id="guest-name" class="font-bold text-2xl md:text-4xl text-slate-800 break-words font-serif italic text-blue-950">
+            <div class="max-w-[300px] md:max-w-md mx-auto px-2">
+                <h3 id="guest-name" class="font-bold text-2xl md:text-4xl text-blue-950 italic border-b border-blue-100 pb-2">
                     [Nama Tamu]
                 </h3>
             </div>
@@ -142,10 +138,6 @@
         <button onclick="startInvitation()" class="relative z-30 bg-blue-600 hover:bg-blue-700 text-white px-12 py-4 rounded-full shadow-2xl transition active:scale-95 text-sm font-semibold tracking-widest flex items-center gap-2 mx-auto transform hover:scale-105">
             <i class="fas fa-envelope-open-text mr-1"></i> BUKA UNDANGAN
         </button>
-    </div>
-
-    <div class="absolute bottom-0 left-0 w-full h-[8vh] pointer-events-none opacity-20 z-0" data-aos="fade-up">
-        <img src="frame-wayang.jpg" alt="Frame Bawah" class="w-full h-full object-cover object-bottom scale-x-110">
     </div>
 </div>
 
