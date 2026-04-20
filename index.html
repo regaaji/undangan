@@ -56,23 +56,36 @@
 
         }
 
-        /* Pola Wayang Halus untuk Background */
-        .bg-pattern-wayang {
-            background-color: var(--white);
-            background-image: url('pola-batik.jpg'); /* Pola Batik halus untuk tekstur */
-            position: relative;
-        }
-        .bg-pattern-wayang::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: url('gunungan.png');
-            background-repeat: repeat-x;
-            background-position: top center;
-            background-size: 100px;
-            opacity: 0.03; /* Sangat samar di background */
-            pointer-events: none;
-        }
+        /* Container Utama */
+.bg-pattern-wayang {
+    background-color: var(--white);
+    position: relative;
+    /* Pastikan overflow aman agar tidak ada elemen 'bocor' keluar */
+    overflow: hidden; 
+}
+
+/* Pola Wayang/Batik sebagai Overlay halus */
+.bg-pattern-wayang::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* Gunakan gambar pola Anda */
+    background-image: url('gunungan.png'); 
+    background-repeat: repeat-x;
+    background-position: top center;
+    background-size: 100px;
+    /* KUNCI UTAMA: opacity sangat rendah & z-index di belakang */
+    opacity: 0.05; 
+    z-index: 0; 
+    pointer-events: none; /* Agar tidak bisa disentuh/diklik */
+}
+
+/* Pastikan semua konten di dalamnya memiliki z-index lebih tinggi */
+.bg-pattern-wayang > * {
+    position: relative;
+    z-index: 1;
+}
+
 
         /* --- COVER STYLING --- */
         #cover {
