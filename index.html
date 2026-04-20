@@ -124,53 +124,46 @@
 <body class="bg-pattern-wayang leading-relaxed">
 
       <div id="cover" class="fixed inset-0 z-[9999] flex flex-col justify-center bg-black overflow-hidden transition-all duration-1000 ease-in-out px-4 py-8">
+    <div id="cover" class="fixed inset-0 z-[9999] flex flex-col justify-center bg-black overflow-hidden transition-all duration-1000 ease-in-out px-4 py-8">
     
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-60 z-0">
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-50 z-0">
         <source src="background.mp4" type="video/mp4">
-        Your browser does not support the video tag.
     </video>
     
-    <div class="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none z-10">
-        <img src="gunungan.png" alt="Gunungan" class="w-[90%] md:w-[50%] object-contain filter: hue-rotate(180deg) brightness (1.2)">
+    <div class="absolute inset-0 pointer-events-none z-10">
+        <div class="absolute top-[-20px] left-[-20px] w-48 md:w-80 opacity-70">
+            <img src="bunga-bunga.png" alt="Bunga Atas" class="w-full rotate-180">
+        </div>
+        <div class="absolute bottom-[-20px] right-[-20px] w-48 md:w-80 opacity-70">
+            <img src="bunga-bunga.png" alt="Bunga Bawah" class="w-full">
+        </div>
     </div>
 
-    <div class="text-center relative z-20 w-full flex-grow flex flex-col items-center justify-center gap-10" data-aos="fade-up">
+    <div class="text-center relative z-20 w-full flex-grow flex flex-col items-center justify-center gap-6" data-aos="fade-up">
         
-        <div class="mb-6 w-full" data-aos="fade-down" data-aos-delay="200">
-            <p class="uppercase tracking-[0.5em] text-[10px] md:text-xs text-blue opacity-80 font-semibold mb-3 not-italic block">
+        <div class="mb-2" data-aos="fade-down" data-aos-delay="200">
+            <p class="uppercase tracking-[0.5em] text-[10px] md:text-xs text-white/90 font-semibold mb-3">
                 Selamat Datang di
             </p>
-            
-            <div class="relative inline-block border-t border-b border-blue/20 py-4 px-2">
-                <h2 class="font-aesthetic text-5xl md:text-7xl text-blue-50 leading-tight tracking-wide drop-shadow-lg">
-                    The Wedding of
-                </h2>
-            </div>
-            
-            <div class="flex justify-center items-center gap-3 mt-4">
-                <div class="h-[1px] w-16 bg-blue/10"></div>
-                <i class="fas fa-seedling text-blue/30 text-xs"></i>
-                <div class="h-[1px] w-16 bg-blue/10"></div>
-            </div>
+            <h2 class="font-aesthetic text-5xl md:text-7xl text-white drop-shadow-lg leading-tight">
+                The Wedding of
+            </h2>
         </div>
         
-        <h1 class="font-aesthetic text-6xl md:text-9xl text-blue mb-10 leading-tight px-2 break-words drop-shadow-xl">
+        <h1 class="font-aesthetic text-7xl md:text-9xl text-blue-300 mb-6 leading-tight drop-shadow-[0_5px_15px_rgba(147,197,253,0.5)]">
             Rega & Safa
         </h1>
         
-        <div class="mb-14 w-full" data-aos="fade-up" data-aos-delay="400">
-            <p class="text-[11px] md:text-sm text-blue/70 mb-4 tracking-normal not-italic block w-full">
-                Kepada Yth. Bapak/Ibu/Saudara/i:
-            </p>
-            
-            <div class="max-w-[280px] md:max-w-md mx-auto px-2 border-b-2 border-blue/30 pb-3">
-                <h3 id="guest-name" class="font-bold text-2xl md:text-4xl text-blue break-words font-serif italic drop-shadow-md">
+        <div class="mb-10 w-full" data-aos="fade-up" data-aos-delay="400">
+            <p class="text-[11px] md:text-sm text-white/80 mb-4 tracking-wide">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+            <div class="max-w-[280px] md:max-w-md mx-auto px-2 border-b border-white/40 pb-3">
+                <h3 id="guest-name" class="font-bold text-2xl md:text-4xl text-white font-serif italic drop-shadow-md">
                     [Nama Tamu]
                 </h3>
             </div>
         </div>
 
-        <button onclick="startInvitation()" class="relative z-30 bg-blue/10 hover:bg-white/20 text-white px-12 py-4 rounded-full shadow-2xl transition active:scale-95 text-sm font-semibold tracking-widest flex items-center gap-2 mx-auto transform hover:scale-105 backdrop-blur-sm border border-white/10">
+        <button onclick="startInvitation()" class="relative z-30 bg-blue-500/80 hover:bg-blue-600 text-white px-12 py-4 rounded-full shadow-[0_0_20px_rgba(59,130,246,0.5)] transition active:scale-95 text-sm font-semibold tracking-widest flex items-center gap-2 mx-auto backdrop-blur-sm border border-white/20 transform hover:scale-105">
             <i class="fas fa-envelope-open-text mr-1"></i> BUKA UNDANGAN
         </button>
     </div>
