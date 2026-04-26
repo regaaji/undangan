@@ -34,35 +34,24 @@
          height: 100vh;
         }
 
+        /* Mencegah glitch transparan pada background saat scroll */
+section {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
 
-        /* --- DEKORASI WAYANG --- */
-        /* Gunungan sebagai pemisah halaman */
-        .gunungan-separator {
-            background-image: url('gunungan.png');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            opacity: 0.15;
-            height: 80px;
-            width: 100%;
-            margin: 2rem 0;
-            filter: hue-rotate(180deg) brightness(1.2);
+#hero-slider {
+    /* Pastikan gambar selalu penuh dan tidak transparan */
+    opacity: 1 !important; 
+    filter: brightness(0.9);
+}
 
-        }
-
-        .gunungan-separator-cover {
-            background-image: url('gunungan.png');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            opacity: 0.15;
-            height: 500px;
-            width: 400%;
-            margin: 2rem 0;
-            filter: hue-rotate(180deg) brightness(1.2);
-
-        }
-
+.bg-gradient-to-b {
+    /* Pastikan gradien tidak menutupi seluruh gambar secara berlebihan */
+    pointer-events: none;
+}
 
 
         /* --- COVER STYLING --- */
@@ -177,18 +166,25 @@
     </audio>
 
     <main>
-        <section class="relative min-h-screen overflow-hidden flex items-center justify-center bg-blue-theme">
-            <div class="absolute inset-0 z-0">
-                <img id="hero-slider" src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920" class="hero-img opacity-60 transition-opacity duration-1000">
-                <div class="absolute inset-0 bg-gradient-to-b from-blue-100/30 via-transparent to-white"></div>
-            </div>
-            <div class="relative z-10 text-center px-4" data-aos="zoom-out">
-                <h2 class="font-aesthetic text-huge text-blue-900 drop-shadow-lg">Rega & Safa</h2>
-                <div class="mt-4 inline-block px-6 py-1 border-y border-blue-400">
-                    <p class="tracking-[0.4em] text-sm md:text-base font-light text-blue-800">29 JULI 2026</p>
-                </div>
-            </div>
-        </section>
+        
+        <section class="relative min-h-screen overflow-hidden flex items-center justify-center bg-white">
+    <div class="absolute inset-0 z-0">
+        <img id="hero-slider" src="https://images.unsplash.com/photo-1519741497674-611481863552" 
+             class="w-full h-full object-cover" alt="Hero Background">
+        
+        <div class="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white z-10"></div>
+    </div>
+
+    <div class="relative z-20 text-center px-4" data-aos="zoom-out">
+        <h2 class="font-aesthetic text-huge text-blue-900 drop-shadow-lg">Rega & Safa</h2>
+        <div class="mt-4 inline-block px-6 py-1 border-y border-blue-400">
+            <p class="tracking-[0.4em] text-sm md:text-base font-light text-blue-800">
+                29 JULI 2026
+            </p>
+        </div>
+    </div>
+</section>
+
 
         
 
