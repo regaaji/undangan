@@ -47,39 +47,6 @@ section {
     opacity: 1 !important; 
     filter: brightness(0.9);
 }
-
-/* --- PERBAIKAN WARNA TEKS HERO (DI ATAS FOTO) --- */
-
-/* 1. Nama Utama: Rega & Safa */
-h1 .hero-name {
-    font-family: 'Aesthetic Regular', serif; /* Sesuaikan dengan nama font Anda */
-    font-size: 7xl; /* atau text-huge jika Anda menggunakannya */
-    /* GANTI MENJADI PUTIH */
-    color: #ffffff; 
-    line-height: 1.1;
-    /* TAMBAHKAN BAYANGAN HITAM UNTUK KONTRAS MAKSIMAL */
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
-}
-
-@media (min-width: 768px) {
-    h1 .hero-name {
-        font-size: 150px; /* Ukuran desktop lebih besar */
-    }
-}
-
-/* 2. Sub-judul Tanggal: 29 JULI 2026 */
-p .hero-date {
-    font-family: var(--font-serif); /* atau sans-serif sesuai desain */
-    font-size: xl; /* text-xl */
-    text-transform: uppercase;
-    tracking-widest: 0.3em;
-    /* GANTI MENJADI PUTIH/ABU SANGAT MUDA */
-    color: #f1f5f9; 
-    font-weight: bold;
-    /* TAMBAHKAN BAYANGAN HITAM HALUS */
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-}
-
         
 
 .bg-gradient-to-b {
@@ -88,6 +55,35 @@ p .hero-date {
 }
 
 
+       /* Styling Khusus Teks di Atas Foto agar Kontras */
+.hero-name-light {
+    color: #ffffff; /* Warna Putih Bersih */
+    font-size: clamp(4rem, 15vw, 9rem); /* Ukuran adaptif HP & Laptop */
+    /* Shadow hitam halus agar teks tetap terbaca di area background terang (dinding) */
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.6), 
+                 -1px -1px 0px rgba(0, 0, 0, 0.2); 
+}
+
+.hero-date-light {
+    color: #ffffff;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Memastikan gambar hero tidak transparan saat di-scroll */
+#hero-slider {
+    opacity: 1 !important;
+    filter: brightness(0.95); /* Sedikit digelapkan agar teks putih makin menonjol */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+/* Memperbaiki transisi antar section agar tidak flicker transparan */
+section {
+    position: relative;
+    background-color: white; /* Dasar warna solid */
+}
+
+        
         /* --- COVER STYLING --- */
         #cover {
             position: fixed; inset: 0; z-index: 9999;
@@ -204,20 +200,24 @@ p .hero-date {
         <section class="relative min-h-screen overflow-hidden flex items-center justify-center bg-white">
     <div class="absolute inset-0 z-0">
         <img id="hero-slider" src="foto1.jpg" 
-             class="w-full h-full object-cover" alt="Hero Background">
+             class="w-full h-full object-cover" alt="Rega & Safa Hero">
         
-        <div class="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-white z-10"></div>
     </div>
 
-    <div class="relative z-20 text-center px-4" data-aos="zoom-out">
-        <h1 class="hero-name">Rega & Safa</h2>
-        <div class="mt-4 inline-block px-6 py-1 border-y border-blue-400"></div>
-            <p class="hero-date">
+    <div class="relative z-20 text-center px-4" data-aos="fade-up">
+        <h2 class="hero-name-light font-aesthetic leading-tight">
+            Rega & Safa
+        </h2>
+        
+        <div class="mt-6 inline-block px-8 py-2 border-y border-white/50 backdrop-blur-sm">
+            <p class="hero-date-light tracking-[0.5em] font-bold text-sm md:text-lg">
                 29 JULI 2026
             </p>
-        
+        </div>
     </div>
 </section>
+
 
 
         
