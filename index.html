@@ -48,6 +48,40 @@ section {
     filter: brightness(0.9);
 }
 
+/* --- PERBAIKAN WARNA TEKS HERO (DI ATAS FOTO) --- */
+
+/* 1. Nama Utama: Rega & Safa */
+.hero-name {
+    font-family: 'Aesthetic Regular', serif; /* Sesuaikan dengan nama font Anda */
+    font-size: 7xl; /* atau text-huge jika Anda menggunakannya */
+    /* GANTI MENJADI PUTIH */
+    color: #ffffff; 
+    line-height: 1.1;
+    /* TAMBAHKAN BAYANGAN HITAM UNTUK KONTRAS MAKSIMAL */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+}
+
+@media (min-width: 768px) {
+    .hero-name {
+        font-size: 150px; /* Ukuran desktop lebih besar */
+    }
+}
+
+/* 2. Sub-judul Tanggal: 29 JULI 2026 */
+.hero-date {
+    font-family: var(--font-serif); /* atau sans-serif sesuai desain */
+    font-size: xl; /* text-xl */
+    text-transform: uppercase;
+    tracking-widest: 0.3em;
+    /* GANTI MENJADI PUTIH/ABU SANGAT MUDA */
+    color: #f1f5f9; 
+    font-weight: bold;
+    /* TAMBAHKAN BAYANGAN HITAM HALUS */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+        
+
 .bg-gradient-to-b {
     /* Pastikan gradien tidak menutupi seluruh gambar secara berlebihan */
     pointer-events: none;
@@ -176,9 +210,9 @@ section {
     </div>
 
     <div class="relative z-20 text-center px-4" data-aos="zoom-out">
-        <h2 class="font-aesthetic text-huge text-blue-900 drop-shadow-lg">Rega & Safa</h2>
+        <h2 class="hero-name font-aesthetic text-huge text-blue-900 drop-shadow-lg">Rega & Safa</h2>
         <div class="mt-4 inline-block px-6 py-1 border-y border-blue-400">
-            <p class="tracking-[0.4em] text-sm md:text-base font-light text-blue-800">
+            <p class="hero-date tracking-[0.4em] text-sm md:text-base font-light text-blue-800">
                 29 JULI 2026
             </p>
         </div>
