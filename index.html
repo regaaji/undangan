@@ -197,27 +197,31 @@ section {
 
     <main>
         
-        <section class="relative min-h-screen overflow-hidden flex items-center justify-center bg-white">
-    <div class="absolute inset-0 z-0">
-        <img id="hero-slider" src="foto1.jpg" 
-             class="w-full h-full object-cover" alt="Rega & Safa Hero">
         
+      <section class="relative min-h-screen overflow-hidden flex items-center justify-center bg-white">
+    <div class="absolute inset-0 z-0">
+        <img id="hero-slider" src="foto-pertunangan.jpg" class="w-full h-full object-cover" alt="Hero Background">
         <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-white z-10"></div>
     </div>
 
-    <div class="relative z-20 text-center px-4" data-aos="fade-up">
-        <h2 class="hero-name-light font-aesthetic leading-tight">
+    <div class="relative z-20 text-center px-4">
+        <h2 class="hero-name-light font-aesthetic leading-tight" 
+            data-aos="fade-up" 
+            data-aos-duration="2000" 
+            data-aos-delay="500">
             Rega & Safa
         </h2>
         
-        <div class="mt-6 inline-block px-8 py-2 border-y border-white/50 backdrop-blur-sm">
+        <div class="mt-6 inline-block px-8 py-2 border-y border-white/50 backdrop-blur-sm"
+             data-aos="fade-right" 
+             data-aos-duration="1500" 
+             data-aos-delay="1200">
             <p class="hero-date-light tracking-[0.5em] font-bold text-sm md:text-lg">
                 29 JULI 2026
             </p>
         </div>
     </div>
 </section>
-
 
 
         
@@ -478,24 +482,31 @@ section {
         }
 
         function startInvitation() {
-         const cover = document.getElementById('cover');
-    
-         // 1. Hilangkan Cover dengan animasi pudar
-         cover.style.opacity = '0';
-         cover.style.transition = 'opacity 1s ease';
-    
-        // 2. Mainkan musik
-        const music = document.getElementById('weddingMusic');
-        if(music) music.play();
+          const cover = document.getElementById('cover');
+          const music = document.getElementById('music'); // sesuaikan ID audio Anda
 
-       // 3. KUNCI UTAMA: Buka kunci scroll pada body
-       document.body.classList.remove('lock-scroll');
+          // 1. Putar Musik
+          if (music) {
+           music.play();
+          }
 
-       // 4. Hapus elemen cover dari tampilan setelah animasi selesai
+          // 2. Hilangkan Cover
+         cover.classList.add('cover-hidden');
+    
+        // 3. Buka kunci scroll
+        document.body.classList.remove('lock-scroll');
+
+        // 4. Picu ulang AOS agar animasi teks dimulai dari awal
+       setTimeout(() => {
+         AOS.refresh();
+       }, 100);
+
+      // Hapus elemen cover setelah animasi selesai agar tidak membebani memori
        setTimeout(() => {
         cover.style.display = 'none';
-        }, 1000);
-      }
+      }, 1500);
+    }
+
 
 
         // Countdown Timer Logic
