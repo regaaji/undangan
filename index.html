@@ -28,6 +28,13 @@
         /* Smooth Scroll */
         html { scroll-behavior: smooth; }
 
+        /* Kunci scroll saat cover masih aktif */
+        body.lock-scroll {
+         overflow: hidden !important;
+         height: 100vh;
+        }
+
+
         /* --- DEKORASI WAYANG --- */
         /* Gunungan sebagai pemisah halaman */
         .gunungan-separator {
@@ -126,7 +133,7 @@
         @media (min-width: 641px) { .text-huge { font-size: 6rem; } .section-padding { padding: 6rem 4rem; } }
     </style>
 </head>
-<body class="leading-relaxed">
+<body class="lock-scroll leading-relaxed">
 
     <div id="cover" class="fixed inset-0 z-[9999] flex flex-col justify-center bg-black overflow-hidden transition-all duration-1000 ease-in-out px-4 py-8">
     
@@ -431,11 +438,25 @@
         }
 
         function startInvitation() {
-            // Menghapus Cover
-            document.getElementById('cover').classList.add('cover-hidden');
-            // Menjalankan Musik
-            document.getElementById('music').play();
-        }
+         const cover = document.getElementById('cover');
+    
+         // 1. Hilangkan Cover dengan animasi pudar
+         cover.style.opacity = '0';
+         cover.style.transition = 'opacity 1s ease';
+    
+        // 2. Mainkan musik
+        const music = document.getElementById('weddingMusic');
+        if(music) music.play();
+
+       // 3. KUNCI UTAMA: Buka kunci scroll pada body
+       document.body.classList.remove('lock-scroll');
+
+       // 4. Hapus elemen cover dari tampilan setelah animasi selesai
+       setTimeout(() => {
+        cover.style.display = 'none';
+        }, 1000);
+      }
+
 
         // Countdown Timer Logic
         const target = new Date("July 29, 2026 09:00:00").getTime();
