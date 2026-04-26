@@ -201,21 +201,20 @@ section {
       <section class="relative min-h-screen overflow-hidden flex items-center justify-center bg-white">
     <div class="absolute inset-0 z-0">
         <img id="hero-slider" src="foto1.jpg" class="w-full h-full object-cover" alt="Hero Background">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-white z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-white z-10"></div>
     </div>
 
     <div class="relative z-20 text-center px-4">
         <h2 class="hero-name-light font-aesthetic leading-tight" 
-            data-aos="fade-up" 
-            data-aos-duration="2000" 
-            data-aos-delay="500">
+            data-aos="zoom-in" 
+            data-aos-duration="2500">
             Rega & Safa
         </h2>
         
         <div class="mt-6 inline-block px-8 py-2 border-y border-white/50 backdrop-blur-sm"
              data-aos="fade-right" 
              data-aos-duration="1500" 
-             data-aos-delay="1200">
+             data-aos-delay="1000">
             <p class="hero-date-light tracking-[0.5em] font-bold text-sm md:text-lg">
                 29 JULI 2026
             </p>
@@ -482,31 +481,30 @@ section {
         }
 
         function startInvitation() {
-            
-          const cover = document.getElementById('cover');
-          const music = document.getElementById('music'); // sesuaikan ID audio Anda
-
-          // 1. Putar Musik
-          if (music) {
-           music.play();
-          }
-
-          // 2. Hilangkan Cover
-         cover.classList.add('cover-hidden');
+    const cover = document.getElementById('cover');
     
-        // 3. Buka kunci scroll
-        document.body.classList.remove('lock-scroll');
+    // 1. Tambahkan class untuk animasi menutup tirai/cover
+    cover.classList.add('cover-hidden'); 
 
-        // 4. Picu ulang AOS agar animasi teks dimulai dari awal
-       setTimeout(() => {
-         AOS.refresh();
-       }, 100);
+    // 2. Mainkan musik
+    const music = document.getElementById('music');
+    if(music) music.play();
 
-      // Hapus elemen cover setelah animasi selesai agar tidak membebani memori
-       setTimeout(() => {
+    // 3. Buka kunci scroll body
+    document.body.classList.remove('lock-scroll');
+
+    // 4. PEMICU ANIMASI HERO (PENTING!)
+    // Memberi jeda 500ms agar cover mulai hilang dulu, baru teks muncul
+    setTimeout(() => {
+        AOS.refreshHard(); // Menghitung ulang semua posisi animasi
+    }, 500);
+
+    // Hapus cover setelah animasi selesai
+    setTimeout(() => {
         cover.style.display = 'none';
-      }, 1500);
-    }
+    }, 1500);
+}
+
 
 
 
@@ -554,5 +552,14 @@ section {
             document.body.style.overflow = 'auto';
         }
     </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  // Inisialisasi awal
+  AOS.init({
+    once: true, // Animasi hanya berjalan sekali agar tidak flicker
+    mirror: false
+  });
+</script>
+
 </body>
 </html>
