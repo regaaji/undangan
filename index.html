@@ -104,6 +104,17 @@ section {
             border: 1px solid rgba(255,255,255,0.3);
         }
 
+        /* CSS UNTUK EFEK KACA (GLASSMORPHISM) */
+/* Ganti nama dari .glass-card menjadi .frosted-layer */
+.frosted-layer {
+    background-color: rgba(255, 255, 255, 0.75);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    backdrop-filter: blur(12px) saturate(180%);
+    border-radius: 2.5rem; /* Tambahkan sekalian agar melengkung cantik */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
         /* Bingkai Foto Lingkaran dengan nuansa Wayang */
      .photo-frame-wayang {
             w-44 h-44 md:w-56 md:h-56 rounded-full overflow-hidden flex-shrink-0 bg-white;
@@ -383,69 +394,50 @@ section {
             </div>
         </section>
 
-        <section class="section-padding relative overflow-hidden text-center" 
-    style="background-image: url('bg-ornament.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <section class="section-padding relative overflow-hidden" 
+    style="background-image: url('bg-ornament.jpg'); background-size: cover; background-position: center; background-attachment: fixed; padding: 120px 0;">
     
-    <div class="absolute inset-0 bg-white/60 backdrop-blur-[2px] z-0"></div>
+    <div class="absolute inset-0 bg-blue-950/20 z-0"></div>
 
-    <div class="max-w-4xl mx-auto px-4 relative z-10" data-aos="fade-up">
+    <div class="container mx-auto px-4 relative z-10 text-center">
         
-        <div class="mb-20">
-            <h2 class="font-serif text-3xl md:text-5xl mb-6 text-blue-900 tracking-wider">Konfirmasi Kehadiran</h2>
-            <p class="text-slate-700 mb-8 leading-relaxed max-w-2xl mx-auto">
-                Mohon konfirmasi kehadiran Bapak/Ibu untuk memudahkan persiapan kami. 
-                Klik tombol di bawah ini untuk mengisi formulir kehadiran.
-            </p>
-            
-            <a href="https://docs.google.com/forms/d/e/ALAMAT_GOOGLE_FORM_ANDA/viewform" 
-               target="_blank" 
-               class="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-full shadow-xl transition-all transform hover:scale-105">
-                <i class="fas fa-edit"></i> ISI FORM KEHADIRAN (RSVP)
-            </a>
-        </div>
-
-        <div class="w-24 h-[2px] bg-blue-200 mx-auto mb-20"></div>
-
-        <div>
-            <h2 class="font-serif text-3xl md:text-5xl mb-6 text-blue-900 tracking-wider">Wedding Gift</h2>
-            <p class="text-slate-700 mb-4 leading-relaxed">Doa restu Anda adalah kado terindah bagi kami.</p>
-            <p class="text-xs text-slate-500 italic mb-10">Namun, bagi Bapak/Ibu yang ingin memberikan tanda kasih secara cashless, dapat melalui:</p>
-
-            <div class="space-y-8 max-w-lg mx-auto">
+        <div class="frosted-layer max-w-4xl mx-auto p-8 md:p-14 shadow-2xl" data-aos="zoom-in">
+       
+            <div class="mb-16">
+                <h2 class="font-serif text-3xl md:text-5xl mb-6 text-blue-950 tracking-wider">Konfirmasi Kehadiran</h2>
+                <p class="text-slate-700 mb-10 leading-relaxed max-w-2xl mx-auto font-medium">
+                    Mohon konfirmasi kehadiran Bapak/Ibu untuk memudahkan persiapan kami. 
+                    Klik tombol di bawah ini untuk mengisi formulir kehadiran.
+                </p>
                 
-                <div class="bg-gradient-to-r from-blue-700 to-blue-500 text-white p-8 rounded-3xl shadow-2xl relative overflow-hidden text-left border border-white/20">
-                    <div class="flex justify-between items-start mb-8 relative z-10">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_logo.svg" class="h-6 filter brightness-0 invert" alt="BRI">
-                        <i class="fas fa-sim-card text-4xl text-yellow-300"></i>
-                    </div>
-                    <div class="relative z-10">
-                        <p class="text-xl md:text-2xl tracking-[0.2em] font-mono mb-2" id="bri-acc">1234-567-89012</p>
-                        <p class="text-xs uppercase opacity-80 font-medium tracking-widest">A.N REGA AJI PRAYOGO</p>
-                    </div>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Gunungan_Wayang.svg" class="absolute -right-4 -bottom-4 h-32 opacity-20 pointer-events-none">
-                    <button onclick="copyAcc('bri-acc')" class="absolute bottom-6 right-6 bg-white/20 hover:bg-white/40 px-4 py-2 rounded-lg text-xs font-bold transition backdrop-blur-sm">
-                        <i class="far fa-copy mr-1"></i> SALIN
-                    </button>
-                </div>
-
-                <div class="bg-gradient-to-r from-sky-500 to-sky-400 text-white p-8 rounded-3xl shadow-2xl relative overflow-hidden text-left border border-white/20">
-                    <div class="flex justify-between items-start mb-8 relative z-10">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_danain.png" class="h-8 filter brightness-0 invert" alt="DANA">
-                        <i class="fas fa-wallet text-3xl text-white/80"></i>
-                    </div>
-                    <div class="relative z-10">
-                        <p class="text-xl md:text-2xl tracking-[0.2em] font-mono mb-2" id="dana-acc">0812-3456-7890</p>
-                        <p class="text-xs uppercase opacity-80 font-medium tracking-widest">A.N REGA AJI PRAYOGO</p>
-                    </div>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Gunungan_Wayang.svg" class="absolute -right-4 -bottom-4 h-32 opacity-20 pointer-events-none">
-                    <button onclick="copyAcc('dana-acc')" class="absolute bottom-6 right-6 bg-white/20 hover:bg-white/40 px-4 py-2 rounded-lg text-xs font-bold transition backdrop-blur-sm">
-                        <i class="far fa-copy mr-1"></i> SALIN
-                    </button>
-                </div>
-
+                <a href="https://docs.google.com/forms/d/e/ALAMAT_GOOGLE_FORM_ANDA/viewform" 
+                   target="_blank" 
+                   class="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-full shadow-lg transition-all transform hover:scale-105">
+                    <i class="fas fa-edit text-lg"></i> ISI FORM KEHADIRAN (RSVP)
+                </a>
             </div>
-        </div>
-    </div>
+
+            <div class="w-24 h-[2px] bg-blue-200 mx-auto mb-16 opacity-60"></div>
+
+            <div>
+                <h2 class="font-serif text-3xl md:text-5xl mb-6 text-blue-950 tracking-wider">Wedding Gift</h2>
+                <p class="text-slate-800 mb-3 font-bold">Doa restu Anda adalah kado terindah bagi kami.</p>
+                <p class="text-xs text-slate-600 italic mb-10">Namun, bagi Bapak/Ibu yang ingin memberikan tanda kasih secara cashless, dapat melalui:</p>
+
+                <div class="space-y-8 max-w-lg mx-auto text-left">
+                    
+                    <div class="bg-gradient-to-r from-blue-700/90 to-blue-500/90 text-white p-8 rounded-3xl shadow-xl relative overflow-hidden border border-white/20"
+                         data-aos="fade-up" data-aos-delay="500">
+                        </div>
+
+                    <div class="bg-gradient-to-r from-sky-500/90 to-sky-400/90 text-white p-8 rounded-3xl shadow-xl relative overflow-hidden border border-white/20"
+                         data-aos="fade-up" data-aos-delay="800">
+                        </div>
+
+                </div>
+            </div>
+
+        </div> </div>
 </section>
 
 
