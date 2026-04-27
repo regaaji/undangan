@@ -395,72 +395,65 @@ section {
         </section>
 
         <section class="section-padding relative overflow-hidden" 
-    style="background-image: url('bg-ornament.jpg'); background-size: cover; background-position: center; background-attachment: fixed; padding: 120px 0;">
+    style="background-image: url('bg-ornament.jpg'); background-size: cover; background-position: center; background-attachment: fixed; padding: 100px 0;">
     
     <div class="absolute inset-0 bg-blue-950/20 z-0"></div>
 
     <div class="container mx-auto px-4 relative z-10 text-center">
-        
         <div class="frosted-layer max-w-4xl mx-auto p-8 md:p-14 shadow-2xl" data-aos="zoom-in">
-       
+            
             <div class="mb-16">
                 <h2 class="font-serif text-3xl md:text-5xl mb-6 text-blue-950 tracking-wider">Konfirmasi Kehadiran</h2>
-                <p class="text-slate-700 mb-10 leading-relaxed max-w-2xl mx-auto font-medium">
-                    Mohon konfirmasi kehadiran Bapak/Ibu untuk memudahkan persiapan kami. 
-                    Klik tombol di bawah ini untuk mengisi formulir kehadiran.
+                <p class="text-slate-700 mb-10 leading-relaxed font-medium">
+                    Mohon konfirmasi kehadiran Bapak/Ibu untuk memudahkan persiapan kami.
                 </p>
-                
-                <a href="https://docs.google.com/forms/d/e/ALAMAT_GOOGLE_FORM_ANDA/viewform" 
-                   target="_blank" 
-                   class="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-full shadow-lg transition-all transform hover:scale-105">
-                    <i class="fas fa-edit text-lg"></i> ISI FORM KEHADIRAN (RSVP)
+                <a href="https://docs.google.com/forms/d/e/ALAMAT_FORM/viewform" target="_blank" 
+                   class="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-full shadow-lg transition-transform hover:scale-105">
+                    <i class="fas fa-edit"></i> ISI FORM KEHADIRAN (RSVP)
                 </a>
             </div>
 
-            <div class="w-24 h-[2px] bg-blue-200 mx-auto mb-16 opacity-60"></div>
+            <div class="w-24 h-[1px] bg-blue-200 mx-auto mb-16 opacity-50"></div>
 
             <div>
                 <h2 class="font-serif text-3xl md:text-5xl mb-6 text-blue-950 tracking-wider">Wedding Gift</h2>
-                <p class="text-slate-800 mb-3 font-bold">Doa restu Anda adalah kado terindah bagi kami.</p>
-                <p class="text-xs text-slate-600 italic mb-10">Namun, bagi Bapak/Ibu yang ingin memberikan tanda kasih secara cashless, dapat melalui:</p>
+                <p class="text-slate-800 mb-2 font-bold">Doa restu Anda adalah kado terindah bagi kami.</p>
+                <p class="text-xs text-slate-600 italic mb-10">Anda dapat memberikan tanda kasih melalui:</p>
 
-                <div class="space-y-8 max-w-lg mx-auto text-left">
+                <div class="space-y-6 max-w-lg mx-auto text-left">
                     
-                     <div class="bg-gradient-to-r from-blue-700 to-blue-500 text-white p-8 rounded-3xl shadow-2xl relative overflow-hidden text-left border border-white/20">
-                    <div class="flex justify-between items-start mb-8 relative z-10">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_logo.svg" class="h-6 filter brightness-0 invert" alt="BRI">
-                        <i class="fas fa-sim-card text-4xl text-yellow-300"></i>
+                    <div class="bg-gradient-to-r from-blue-700 to-blue-500 text-white p-7 rounded-3xl shadow-lg border border-white/20 relative">
+                        <div class="flex justify-between items-start mb-10">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_logo.svg" class="h-5 filter brightness-0 invert" alt="BRI">
+                            <i class="fas fa-sim-card text-3xl text-yellow-300 opacity-80"></i>
+                        </div>
+                        <div class="mb-2">
+                            <p class="text-xl md:text-2xl tracking-[0.15em] font-mono font-bold" id="bri-acc">1234-567-89012</p>
+                            <p class="text-[10px] uppercase tracking-widest opacity-70 mt-1">A.N REGA AJI PRAYOGO</p>
+                        </div>
+                        <button onclick="copyAcc('bri-acc', this)" class="mt-4 bg-white/20 hover:bg-white/30 px-5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2">
+                            <i class="far fa-copy"></i> SALIN NOMOR
+                        </button>
                     </div>
-                    <div class="relative z-10">
-                        <p class="text-xl md:text-2xl tracking-[0.2em] font-mono mb-2" id="bri-acc">1234-567-89012</p>
-                        <p class="text-xs uppercase opacity-80 font-medium tracking-widest">A.N REGA AJI PRAYOGO</p>
-                    </div>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Gunungan_Wayang.svg" class="absolute -right-4 -bottom-4 h-32 opacity-20 pointer-events-none">
-                    <button onclick="copyAcc('bri-acc')" class="absolute bottom-6 right-6 bg-white/20 hover:bg-white/40 px-4 py-2 rounded-lg text-xs font-bold transition backdrop-blur-sm">
-                        <i class="far fa-copy mr-1"></i> SALIN
-                    </button>
-                </div>
 
-                <div class="bg-gradient-to-r from-sky-500 to-sky-400 text-white p-8 rounded-3xl shadow-2xl relative overflow-hidden text-left border border-white/20">
-                    <div class="flex justify-between items-start mb-8 relative z-10">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_danain.png" class="h-8 filter brightness-0 invert" alt="DANA">
-                        <i class="fas fa-wallet text-3xl text-white/80"></i>
+                    <div class="bg-gradient-to-r from-sky-500 to-sky-400 text-white p-7 rounded-3xl shadow-lg border border-white/20 relative">
+                        <div class="flex justify-between items-start mb-10">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_danain.png" class="h-6 filter brightness-0 invert" alt="DANA">
+                            <i class="fas fa-wallet text-2xl opacity-80"></i>
+                        </div>
+                        <div class="mb-2">
+                            <p class="text-xl md:text-2xl tracking-[0.15em] font-mono font-bold" id="dana-acc">0812-3456-7890</p>
+                            <p class="text-[10px] uppercase tracking-widest opacity-70 mt-1">A.N REGA AJI PRAYOGO</p>
+                        </div>
+                        <button onclick="copyAcc('dana-acc', this)" class="mt-4 bg-white/20 hover:bg-white/30 px-5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2">
+                            <i class="far fa-copy"></i> SALIN NOMOR
+                        </button>
                     </div>
-                    <div class="relative z-10">
-                        <p class="text-xl md:text-2xl tracking-[0.2em] font-mono mb-2" id="dana-acc">0812-3456-7890</p>
-                        <p class="text-xs uppercase opacity-80 font-medium tracking-widest">A.N REGA AJI PRAYOGO</p>
-                    </div>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Gunungan_Wayang.svg" class="absolute -right-4 -bottom-4 h-32 opacity-20 pointer-events-none">
-                    <button onclick="copyAcc('dana-acc')" class="absolute bottom-6 right-6 bg-white/20 hover:bg-white/40 px-4 py-2 rounded-lg text-xs font-bold transition backdrop-blur-sm">
-                        <i class="far fa-copy mr-1"></i> SALIN
-                    </button>
-                </div>
-
 
                 </div>
             </div>
-
-        </div> </div>
+        </div>
+    </div>
 </section>
 
 
@@ -560,13 +553,30 @@ section {
         }
         setInterval(updateTimer, 1000);
 
-        // Copy Account Function
-        function copyAcc(id) {
-          const text = document.getElementById(id).innerText.replace(/-/g, "");
-          navigator.clipboard.writeText(text).then(() => {
-        alert("Nomor rekening berhasil disalin!");
-           });
-         }
+        
+function copyAcc(id, btn) {
+    // Ambil teks nomor, hilangkan tanda hubung (-) agar bersih saat dipaste ke ATM/M-Banking
+    const textToCopy = document.getElementById(id).innerText.replace(/-/g, "");
+    
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        // Simpan teks asli tombol
+        const originalText = btn.innerHTML;
+        
+        // Ubah tampilan tombol sesaat
+        btn.classList.replace('bg-white/20', 'bg-green-500');
+        btn.innerHTML = '<i class="fas fa-check"></i> BERHASIL';
+        
+        // Kembalikan ke semula setelah 2 detik
+        setTimeout(() => {
+            btn.classList.replace('bg-green-500', 'bg-white/20');
+            btn.innerHTML = originalText;
+        }, 2000);
+    }).catch(err => {
+        console.error('Gagal menyalin: ', err);
+        alert("Gagal menyalin nomor.");
+    });
+}
+    
 
         // --- FITUR LIGHTBOX (ZOOM & DOWNLOAD) ---
         function openLightbox(imgUrl) {
