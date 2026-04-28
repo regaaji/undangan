@@ -157,6 +157,20 @@ body.no-scroll {
 }
 
         
+#main-invitation {
+    width: 100%;
+    position: relative;
+    opacity: 0;
+    animation: fadeInContent 1.5s forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInContent {
+    to { opacity: 1; }
+}
+
+
+        
         /* Hero Image */
         .hero-img { height: 100dvh; object-fit: cover; width: 100%; }
 
@@ -170,35 +184,31 @@ body.no-scroll {
 </head>
 <body class="lock-scroll leading-relaxed">
 
-    <section id="cover" class="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden">
-    <video id="opening-video" muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
-        <source src="background2.mp4" type="video/mp4">
+    <section id="cover" class="fixed inset-0 z-[999] flex items-center justify-center bg-blue-900">
+    <video id="opening-video" muted playsinline class="absolute inset-0 w-full h-full object-cover">
+        <source src="1000261719.mp4" type="video/mp4">
     </video>
     
-    <div class="absolute inset-0 bg-black/20 z-10"></div>
+    <div class="absolute inset-0 bg-black/30 z-10"></div>
 
     <div id="cover-content" class="relative z-20 text-center text-white px-6">
-        <div class="animate-reveal">
-            <p class="text-xs uppercase tracking-[0.4em] mb-4 opacity-90">Selamat Datang di</p>
-            <h2 class="font-serif text-2xl md:text-3xl mb-2">The Wedding of</h2>
-            <h1 class="font-aesthetic text-6xl md:text-8xl mb-8 drop-shadow-lg">Rega & Safa</h1>
-            
-            <div class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-2xl p-6 mb-8 inline-block min-w-[280px]">
-                <p class="text-xs mb-2 opacity-80">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-                <h3 class="text-2xl font-bold tracking-wide border-b border-white/50 pb-2 inline-block">[Nama Tamu]</h3>
-            </div>
-            
-            <br>
-            
-            <button onclick="openInvitation()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-full shadow-2xl transition-all transform hover:scale-110 flex items-center gap-3 mx-auto">
-                <i class="fas fa-envelope-open-text"></i> BUKA UNDANGAN
-            </button>
+        <p class="text-xs uppercase tracking-[0.4em] mb-4">The Wedding of</p>
+        <h1 class="font-aesthetic text-6xl mb-8">Rega & Safa</h1>
+        
+        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl mb-8">
+            <p class="text-xs mb-2">Kepada Yth:</p>
+            <h3 class="text-xl font-bold">[Nama Tamu]</h3>
         </div>
+
+        <button onclick="openInvitation()" class="bg-blue-600 text-white font-bold px-10 py-4 rounded-full shadow-2xl">
+            <i class="fas fa-envelope-open-text mr-2"></i> BUKA UNDANGAN
+        </button>
     </div>
 </section>
 
-<main id="main-invitation" class="opacity-0 pointer-events-none transition-opacity duration-1000">
-</main>
+<div id="main-invitation" style="display: none;">
+    </div>
+
 
 
 
@@ -512,26 +522,48 @@ body.no-scroll {
             // Mengubah Enter (%0A) dari URL menjadi baris baru (<br>)
             document.getElementById('guest-name').innerHTML = to.replace(/\n/g, '<br>');
         }
+        
 
-        // Kunci scroll saat pertama buka
-document.body.classList.add('no-scroll');
+        // 1. Paksa video putar saat halaman dimuat
+window.addEventListener('load', function() {
+    const video = document.getElementById('opening-video');
+    video.play().catch(error => {
+        console.log("Autoplay dicegah browser, video akan diputar manual.");
+    });
+});
 
 function openInvitation() {
     const cover = document.getElementById('cover');
-    const content = document.getElementById('main-invitation');
+    const mainContent = document.getElementById('main-invitation');
     
-    // Hilangkan sampul
-    cover.classList.add('cover-fade-out');
-    
-    // Tampilkan isi undangan
-    content.classList.add('opacity-100', 'pointer-events-auto');
-    
-    // Buka kunci scroll
-    document.body.classList.remove('no-scroll');
-    
-    // Mulai musik jika ada
-    // playMusic(); 
+    // 2. Mainkan Video (sebagai cadangan jika autoplay gagal)
+    document.getElementById('opening-video').play();
+
+    // 3. Efek Transisi Menghilang
+    cover.style.transition = "opacity 1s ease, transform 1.2s cubic-bezier(0.7, 0, 0.3, 1)";
+    cover.style.opacity = "0";
+    cover.style.transform = "translateY(-100%)";
+
+    // 4. Munculkan Konten Utama & Aktifkan Scroll
+    setTimeout(() => {
+        cover.style.display = "none"; // Hapus sampul dari sistem agar tidak menghalangi klik
+        mainContent.style.display = "block"; // Tampilkan konten utama
+        
+        // Penting: Kembalikan fungsi scroll pada body
+        document.body.style.overflow = "auto";
+        document.documentElement.style.overflow = "auto";
+        
+        // Jika pakai AOS, refresh di sini
+        if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+        }
+    }, 1000); 
 }
+
+// Kunci scroll saat pertama kali dibuka
+document.body.style.overflow = "hidden";
+document.documentElement.style.overflow = "hidden";
+
 
 
 
