@@ -262,7 +262,7 @@ section {
                 
                 <div class="mb-12">
                     <p class="uppercase tracking-[0.4em] text-[10px] md:text-xs text-blue-500 font-semibold mb-2 reveal">The Wedding of</p>
-                    <h2 class="font-aesthetic text-6xl md:text-7xl text-blue-700 leading-tight reveal-delay">Rega & Safa</h2>
+                    <h2 id="ani-nama" class="font-aesthetic text-6xl md:text-7xl text-blue-700 leading-tight reveal-delay">Rega & Safa</h2>
                     <div class="flex justify-center items-center gap-4 mt-3">
                         <div class="h-[1px] w-12 bg-blue-300"></div>
                         <i class="fas fa-heart text-blue-300 text-xs"></i>
@@ -270,7 +270,7 @@ section {
                     </div>
                 </div>
 
-                <p class="text-3xl md:text-4xl mb-6 font-serif tracking-wide text-blue-900 reveal">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+                <p id="ani-tgl" class="text-3xl md:text-4xl mb-6 font-serif tracking-wide text-blue-900 reveal">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
                 <p class="text-sm md:text-base italic text-slate-600 mb-12 reveal-delay">Assalamu’alaikum Warahmatullahi Wabarakatuh</p>
                 
                 <p class="text-sm md:text-base text-slate-700 mb-12 leading-relaxed px-4 border-l-2 border-blue-100 ml-4 mr-4 py-2">
@@ -550,36 +550,40 @@ section {
 function startInvitation() {
     const cover = document.getElementById('cover');
     const main = document.getElementById('main-content');
-    const music = document.getElementById('music');
-
-    if (music) music.play();
-
-    // Hilangkan cover dengan animasi halus
+    
+    // 1. Jalankan transisi penutup
     cover.style.opacity = '0';
-    cover.style.transition = 'opacity 1s ease';
 
     setTimeout(() => {
+        // 2. Tampilkan main & buka kunci scroll
         cover.style.display = 'none';
-        
-        // Munculkan main content
         main.style.display = 'block';
-        
-        // Hapus class pengunci scroll pada body
-        document.body.classList.remove('lock-scroll');
         document.body.style.overflow = 'auto';
+        document.body.classList.remove('lock-scroll');
 
+        // 3. JALANKAN ANIMASI (Kita panggil ID satu per satu)
         setTimeout(() => {
             main.style.opacity = '1';
-            
-            // Opsional: Tetap jalankan AOS refresh untuk jaga-jaga
-            if (typeof AOS !== 'undefined') {
-                AOS.init();
-                AOS.refresh();
+
+            // Elemen Nama muncul
+            const nama = document.getElementById('ani-nama');
+            if(nama) {
+                nama.classList.remove('opacity-0', 'translate-y-10');
+                nama.classList.add('opacity-100', 'translate-y-0');
             }
-        }, 50);
+
+            // Elemen Tanggal muncul sedikit lebih lambat (delay)
+            setTimeout(() => {
+                const tgl = document.getElementById('ani-tgl');
+                if(tgl) {
+                    tgl.classList.remove('opacity-0', 'translate-y-10');
+                    tgl.classList.add('opacity-100', 'translate-y-0');
+                }
+            }, 300); // Jeda 0.3 detik dari nama
+
+        }, 100); // Tunggu sebentar agar browser siap
     }, 1000);
 }
-
 
 
         // Countdown Timer Logic
