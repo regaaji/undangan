@@ -157,30 +157,23 @@ section {
     }
 }
 
-        /* Keadaan awal elemen (tersembunyi & di bawah) */
-.reveal {
+        /* Keadaan awal: tak terlihat dan agak ke bawah */
+.muncul-setelah-buka {
     opacity: 0;
-    transform: translateY(40px);
-    transition: all 1.2s ease-out;
+    transform: translateY(30px);
+    transition: all 1s ease-out;
 }
 
-/* Muncul saat #main-content diatur ke display: block lewat JS */
-#main-content[style*="display: block"] .reveal {
+/* Aktif otomatis saat tombol buka diklik */
+#main-content[style*="display: block"] .muncul-setelah-buka {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Versi delay agar muncul bergantian */
-.reveal-delay {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 1.2s ease-out 0.4s;
-}
+/* Versi delay (untuk teks di bawahnya agar tidak barengan) */
+.delay-1 { transition-delay: 0.3s; }
+.delay-2 { transition-delay: 0.6s; }
 
-#main-content[style*="display: block"] .reveal-delay {
-    opacity: 1;
-    transform: translateY(0);
-}
 
 
         /* Hero Image */
@@ -261,8 +254,8 @@ section {
             <div class="max-w-3xl mx-auto px-4 relative z-10">
                 
                 <div class="mb-12">
-                    <p class="uppercase tracking-[0.4em] text-[10px] md:text-xs text-blue-500 font-semibold mb-2 reveal">The Wedding of</p>
-                    <h2 id="ani-nama" class="font-aesthetic text-6xl md:text-7xl text-blue-700 leading-tight reveal-delay">Rega & Safa</h2>
+                    <p class="uppercase tracking-[0.4em] text-[10px] md:text-xs text-blue-500 font-semibold mb-2 muncul-setelah-buka">The Wedding of</p>
+                    <h2 id="ani-nama" class="font-aesthetic text-6xl md:text-7xl text-blue-700 leading-tight muncul-setelah-buka delay-1">Rega & Safa</h2>
                     <div class="flex justify-center items-center gap-4 mt-3">
                         <div class="h-[1px] w-12 bg-blue-300"></div>
                         <i class="fas fa-heart text-blue-300 text-xs"></i>
@@ -550,38 +543,34 @@ section {
 function startInvitation() {
     const cover = document.getElementById('cover');
     const main = document.getElementById('main-content');
-    
-    // 1. Jalankan transisi penutup
-    cover.style.opacity = '0';
+    const music = document.getElementById('music');
+
+    if (music) music.play();
+
+    // 1. Animasi tutup tirai
+    cover.classList.add('cover-hidden');
 
     setTimeout(() => {
-        // 2. Tampilkan main & buka kunci scroll
+        // 2. Munculkan konten utama
         cover.style.display = 'none';
         main.style.display = 'block';
-        document.body.style.overflow = 'auto';
-        document.body.classList.remove('lock-scroll');
 
-        // 3. JALANKAN ANIMASI (Kita panggil ID satu per satu)
+        // 3. BUKA KUNCI SCROLL (WAJIB)
+        document.body.classList.remove('lock-scroll');
+        document.body.style.overflow = 'auto'; // Paksa scroll aktif
+        document.documentElement.style.overflow = 'auto';
+
+        // 4. Paksa posisi kembali ke atas
+        window.scrollTo(0, 0);
+
         setTimeout(() => {
             main.style.opacity = '1';
-
-            // Elemen Nama muncul
-            const nama = document.getElementById('ani-nama');
-            if(nama) {
-                nama.classList.remove('opacity-0', 'translate-y-10');
-                nama.classList.add('opacity-100', 'translate-y-0');
+            // Refresh AOS jika masih ingin pakai AOS di bagian bawah
+            if (typeof AOS !== 'undefined') {
+                AOS.init();
+                AOS.refresh();
             }
-
-            // Elemen Tanggal muncul sedikit lebih lambat (delay)
-            setTimeout(() => {
-                const tgl = document.getElementById('ani-tgl');
-                if(tgl) {
-                    tgl.classList.remove('opacity-0', 'translate-y-10');
-                    tgl.classList.add('opacity-100', 'translate-y-0');
-                }
-            }, 300); // Jeda 0.3 detik dari nama
-
-        }, 100); // Tunggu sebentar agar browser siap
+        }, 50);
     }, 1000);
 }
 
