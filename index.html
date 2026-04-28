@@ -518,30 +518,19 @@ section {
         function startInvitation() {
     const cover = document.getElementById('cover');
     const main = document.getElementById('main-content');
-    const music = document.getElementById('music');
-
-    if(music) music.play();
-
-    // 1. Animasi cover menghilang
+    
+    // Hilangkan sampul
     cover.style.opacity = '0';
-    cover.style.transition = 'opacity 1s ease';
-
+    
     setTimeout(() => {
-        // 2. Hilangkan cover dan munculkan main
         cover.style.display = 'none';
+        // Saat ini berubah jadi block, CSS di atas otomatis menjalankan animasi
         main.style.display = 'block'; 
         
-        // Jeda sangat singkat (100ms) agar browser sadar elemen sudah muncul
         setTimeout(() => {
             main.style.opacity = '1';
-
-            // 3. SOLUSI AOS: Jalankan perintah ini agar animasi aktif kembali
-            AOS.init(); 
-            AOS.refresh(); 
-
-            document.body.classList.remove('lock-scroll');
             document.body.style.overflow = 'auto';
-        }, 100);
+        }, 50);
     }, 1000);
 }
 
