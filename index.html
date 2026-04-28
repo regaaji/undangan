@@ -151,7 +151,32 @@ section {
         transform: translateY(0);
     }
 }
-        
+
+        /* Keadaan awal: tak terlihat dan agak ke bawah */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease-out;
+}
+
+/* Keadaan setelah main dibuka: muncul dan naik */
+#main-content[style*="display: block"] .reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Versi delay agar tidak muncul barengan semua */
+.reveal-delay {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease-out 0.5s; /* ada jeda 0.5 detik */
+}
+
+#main-content[style*="display: block"] .reveal-delay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
         /* Hero Image */
         .hero-img { height: 100dvh; object-fit: cover; width: 100%; }
 
@@ -227,11 +252,11 @@ section {
         <section class="section-padding bg-white-theme text-center relative overflow-hidden">
             
 
-            <div class="max-w-3xl mx-auto px-4 relative z-10" data-aos="fade-up">
+            <div class="max-w-3xl mx-auto px-4 relative z-10">
                 
-                <div class="mb-12" data-aos="fade-down" data-aos-delay="200">
-                    <p class="uppercase tracking-[0.4em] text-[10px] md:text-xs text-blue-500 font-semibold mb-2">The Wedding of</p>
-                    <h2 class="font-aesthetic text-6xl md:text-7xl text-blue-700 leading-tight">Rega & Safa</h2>
+                <div class="mb-12">
+                    <p class="uppercase tracking-[0.4em] text-[10px] md:text-xs text-blue-500 font-semibold mb-2 reveal">The Wedding of</p>
+                    <h2 class="font-aesthetic text-6xl md:text-7xl text-blue-700 leading-tight reveal-delay">Rega & Safa</h2>
                     <div class="flex justify-center items-center gap-4 mt-3">
                         <div class="h-[1px] w-12 bg-blue-300"></div>
                         <i class="fas fa-heart text-blue-300 text-xs"></i>
