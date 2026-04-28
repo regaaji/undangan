@@ -192,7 +192,7 @@ section {
 </div>
 
 
-<main id="main-content" style="display: none; opacity: 0;" data-aos="fade-up">
+<main id="main-content" style="display: none; opacity: 0;">
     
 
 
@@ -524,33 +524,26 @@ section {
 
     if(music) music.play();
 
-    // 1. Hilangkan cover secara visual dulu
+    // 1. Animasi cover menghilang
     cover.style.opacity = '0';
     cover.style.transition = 'opacity 1s ease';
 
     setTimeout(() => {
-        // 2. Tampilkan main content
+        // 2. Hilangkan cover dan munculkan main
         cover.style.display = 'none';
-        main.style.display = 'block';
+        main.style.display = 'block'; 
         
-        // 3. Beri sedikit jeda agar browser selesai merender 'display: block'
+        // Jeda sangat singkat (100ms) agar browser sadar elemen sudah muncul
         setTimeout(() => {
             main.style.opacity = '1';
-            
-            // 4. SOLUSI UTAMA: Inisialisasi ulang AOS di sini
-            if (typeof AOS !== 'undefined') {
-                AOS.init({
-                    duration: 1000,
-                    once: true,
-                    mirror: false
-                });
-                AOS.refreshHard(); // Memaksa AOS menghitung ulang posisi elemen
-            }
-            
-            // Buka scroll
+
+            // 3. SOLUSI AOS: Jalankan perintah ini agar animasi aktif kembali
+            AOS.init(); 
+            AOS.refresh(); 
+
             document.body.classList.remove('lock-scroll');
             document.body.style.overflow = 'auto';
-        }, 100); 
+        }, 100);
     }, 1000);
 }
 
