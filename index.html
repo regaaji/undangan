@@ -38,6 +38,20 @@ body {
     height: auto !important;
 }
 
+        /* Pastikan body bisa scroll saat kunci dibuka */
+body:not(.lock-scroll) {
+    overflow-y: auto !important;
+    height: auto !important;
+}
+
+/* Animasi cadangan jika AOS gagal */
+.force-reveal {
+    opacity: 1 !important;
+    transform: translate(0) scale(1) !important;
+    transition: all 1s ease-in-out !important;
+}
+
+
 
         /* Mencegah glitch transparan pada background saat scroll */
 section {
@@ -547,30 +561,37 @@ function startInvitation() {
 
     if (music) music.play();
 
-    // 1. Animasi tutup tirai
+    // 1. Efek tutup tirai
     cover.classList.add('cover-hidden');
 
     setTimeout(() => {
         // 2. Munculkan konten utama
         cover.style.display = 'none';
         main.style.display = 'block';
-
-        // 3. BUKA KUNCI SCROLL (WAJIB)
+        
+        // 3. BUKA KUNCI SCROLL (Paling Penting)
         document.body.classList.remove('lock-scroll');
-        document.body.style.overflow = 'auto'; // Paksa scroll aktif
+        document.body.style.overflow = 'auto';
         document.documentElement.style.overflow = 'auto';
 
-        // 4. Paksa posisi kembali ke atas
+        // 4. Reset Scroll ke atas
         window.scrollTo(0, 0);
 
         setTimeout(() => {
             main.style.opacity = '1';
-            // Refresh AOS jika masih ingin pakai AOS di bagian bawah
+
+            // 5. PAKSA SEMUA ANIMASI AOS JALAN
+            const aosElements = main.querySelectorAll('[data-aos]');
+            aosElements.forEach((el) => {
+                el.classList.add('aos-animate'); // Class standar AOS untuk mulai animasi
+                el.classList.add('force-reveal'); // Backup dari CSS kita tadi
+            });
+
+            // 6. Refresh AOS sistem
             if (typeof AOS !== 'undefined') {
-                AOS.init();
-                AOS.refresh();
+                AOS.refreshHard();
             }
-        }, 50);
+        }, 100);
     }, 1000);
 }
 
