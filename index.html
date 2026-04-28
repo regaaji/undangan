@@ -28,11 +28,16 @@
         /* Smooth Scroll */
         html { scroll-behavior: smooth; }
 
-        /* Kunci scroll saat cover masih aktif */
-        body.lock-scroll {
-         overflow: hidden !important;
-         height: 100vh;
-        }
+        #main-content {
+    width: 100%;
+    min-height: 100vh;
+    overflow: visible !important; /* Pastikan konten di dalamnya tidak terpotong */
+}
+
+body {
+    height: auto !important;
+}
+
 
         /* Mencegah glitch transparan pada background saat scroll */
 section {
@@ -543,21 +548,52 @@ section {
         function startInvitation() {
     const cover = document.getElementById('cover');
     const main = document.getElementById('main-content');
-    
-    // Hilangkan sampul
+    const music = document.getElementById('music');
+
+    // 1. Langsung putar musik
+    if (music) {
+        music.play();
+    }
+
+    // 2. Beri efek transisi pada sampul agar tidak kaku
     cover.style.opacity = '0';
-    
+    cover.style.transition = 'opacity 1s ease, transform 1s ease';
+    cover.style.transform = 'scale(1.1)'; // Efek zoom out sedikit
+
     setTimeout(() => {
+        // 3. Sembunyikan sampul total dan munculkan konten utama
         cover.style.display = 'none';
-        // Saat ini berubah jadi block, CSS di atas otomatis menjalankan animasi
-        main.style.display = 'block'; 
+        main.style.display = 'block';
         
+        // 4. BUKA KUNCI SCROLL (PENTING!)
+        // Hapus class 'lock-scroll' dan paksa overflow menjadi auto
+        document.body.classList.remove('lock-scroll');
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
+
+        // 5. Reset posisi scroll ke paling atas agar tidak nyangkut di tengah
+        window.scrollTo(0, 0);
+
         setTimeout(() => {
+            // 6. Munculkan konten utama perlahan
             main.style.opacity = '1';
-            document.body.style.overflow = 'auto';
-        }, 50);
-    }, 1000);
+
+            // 7. AKTIFKAN ULANG AOS (PENTING!)
+            // AOS perlu di-refresh agar tahu elemen sudah tidak 'display: none' lagi
+            if (typeof AOS !== 'undefined') {
+                AOS.init();
+                AOS.refreshHard(); 
+            }
+        }, 100);
+
+        // 8. Opsi tambahan: Hapus elemen cover dari sistem agar HP makin ringan
+        setTimeout(() => {
+            cover.remove();
+        }, 1000);
+
+    }, 1000); // Waktu tunggu sesuai durasi transisi opacity sampul
 }
+
 
 
 
