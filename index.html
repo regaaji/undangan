@@ -169,6 +169,17 @@ body.no-scroll {
     to { opacity: 1; }
 }
 
+        /* Pastikan body tidak terkunci secara permanen */
+body {
+    min-height: 100vh;
+    -webkit-overflow-scrolling: touch; /* Untuk scroll halus di iPhone */
+}
+
+#main-invitation {
+    position: relative;
+    z-index: 1;
+}
+
 
         
         /* Hero Image */
