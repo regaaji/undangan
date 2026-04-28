@@ -130,42 +130,30 @@ section {
             border-radius: 50%;
             opacity: 0.5;
         }
-
-/* Pastikan video tidak menghilang setelah selesai */
-#opening-video {
-    background-color: transparent;
+        
+/* Sembunyikan scrollbar saat sampul aktif */
+body.no-scroll {
+    overflow: hidden;
 }
 
+/* Animasi Muncul Halus */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Tulisan Nama muncul di detik ke-3 (saat tirai tersingkap di video) */
+/* Delay disesuaikan dengan video tirai terbuka (sekitar detik ke-3) */
 .animate-reveal {
     opacity: 0;
-    animation: fadeInUp 1.5s ease-out forwards;
+    animation: fadeInUp 2s ease-out forwards;
     animation-delay: 3s; 
 }
 
-/* Tulisan 'The Wedding of' muncul sedikit lebih awal */
-.animate-reveal-slow {
+/* Transisi menghilangkan cover */
+.cover-fade-out {
+    transform: translateY(-100%);
     opacity: 0;
-    animation: fadeInUp 2s ease-out forwards;
-    animation-delay: 2.5s;
-}
-
-/* Tombol muncul terakhir agar tamu fokus ke visual tirai dulu */
-.animate-bounce-slow {
-    opacity: 0;
-    animation: fadeInUp 1s ease-out forwards;
-    animation-delay: 4.5s;
+    transition: all 1.2s cubic-bezier(0.7, 0, 0.3, 1);
 }
 
         
@@ -182,25 +170,35 @@ section {
 </head>
 <body class="lock-scroll leading-relaxed">
 
-    <section class="relative w-full h-screen overflow-hidden flex items-center justify-center text-center">
-    
-    <video autoplay muted playsinline class="absolute inset-0 w-full h-full object-cover z-0" id="opening-video">
-    <source src="background2.mp4" type="video/mp4">
+    <section id="cover" class="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden">
+    <video id="opening-video" muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+        <source src="background2.mp4" type="video/mp4">
     </video>
-
+    
     <div class="absolute inset-0 bg-black/20 z-10"></div>
 
-    <div class="relative z-20 text-white">
-        <p class="text-sm uppercase tracking-[0.3em] mb-4 animate-reveal-slow">The Wedding of</p>
-        <h1 class="font-aesthetic text-6xl md:text-8xl mb-4 animate-reveal">Rega & Safa</h1>
-        <div class="w-20 h-[2px] bg-white mx-auto mb-6 animate-reveal-slow"></div>
-        <p class="text-lg tracking-widest animate-reveal-delayed">29 JULI 2026</p>
-        
-        <button class="mt-12 bg-white text-blue-900 font-bold px-8 py-3 rounded-full shadow-xl hover:bg-blue-100 transition-all transform hover:scale-105 animate-bounce-slow">
-            <i class="fas fa-envelope-open-text mr-2"></i> BUKA UNDANGAN
-        </button>
+    <div id="cover-content" class="relative z-20 text-center text-white px-6">
+        <div class="animate-reveal">
+            <p class="text-xs uppercase tracking-[0.4em] mb-4 opacity-90">Selamat Datang di</p>
+            <h2 class="font-serif text-2xl md:text-3xl mb-2">The Wedding of</h2>
+            <h1 class="font-aesthetic text-6xl md:text-8xl mb-8 drop-shadow-lg">Rega & Safa</h1>
+            
+            <div class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-2xl p-6 mb-8 inline-block min-w-[280px]">
+                <p class="text-xs mb-2 opacity-80">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+                <h3 class="text-2xl font-bold tracking-wide border-b border-white/50 pb-2 inline-block">[Nama Tamu]</h3>
+            </div>
+            
+            <br>
+            
+            <button onclick="openInvitation()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-full shadow-2xl transition-all transform hover:scale-110 flex items-center gap-3 mx-auto">
+                <i class="fas fa-envelope-open-text"></i> BUKA UNDANGAN
+            </button>
+        </div>
     </div>
 </section>
+
+<main id="main-invitation" class="opacity-0 pointer-events-none transition-opacity duration-1000">
+</main>
 
 
 
@@ -515,30 +513,26 @@ section {
             document.getElementById('guest-name').innerHTML = to.replace(/\n/g, '<br>');
         }
 
-        function startInvitation() {
+        // Kunci scroll saat pertama buka
+document.body.classList.add('no-scroll');
+
+function openInvitation() {
     const cover = document.getElementById('cover');
+    const content = document.getElementById('main-invitation');
     
-    // 1. Tambahkan class untuk animasi menutup tirai/cover
-    cover.classList.add('cover-hidden'); 
-
-    // 2. Mainkan musik
-    const music = document.getElementById('music');
-    if(music) music.play();
-
-    // 3. Buka kunci scroll body
-    document.body.classList.remove('lock-scroll');
-
-    // 4. PEMICU ANIMASI HERO (PENTING!)
-    // Memberi jeda 500ms agar cover mulai hilang dulu, baru teks muncul
-    setTimeout(() => {
-        AOS.refreshHard(); // Menghitung ulang semua posisi animasi
-    }, 500);
-
-    // Hapus cover setelah animasi selesai
-    setTimeout(() => {
-        cover.style.display = 'none';
-    }, 1500);
+    // Hilangkan sampul
+    cover.classList.add('cover-fade-out');
+    
+    // Tampilkan isi undangan
+    content.classList.add('opacity-100', 'pointer-events-auto');
+    
+    // Buka kunci scroll
+    document.body.classList.remove('no-scroll');
+    
+    // Mulai musik jika ada
+    // playMusic(); 
 }
+
 
 
 
