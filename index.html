@@ -157,30 +157,31 @@ section {
     }
 }
 
-        /* Keadaan awal: tak terlihat dan agak ke bawah */
+        /* Keadaan awal elemen (tersembunyi & di bawah) */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s ease-out;
+    transform: translateY(40px);
+    transition: all 1.2s ease-out;
 }
 
-/* Keadaan setelah main dibuka: muncul dan naik */
+/* Muncul saat #main-content diatur ke display: block lewat JS */
 #main-content[style*="display: block"] .reveal {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Versi delay agar tidak muncul barengan semua */
+/* Versi delay agar muncul bergantian */
 .reveal-delay {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s ease-out 0.5s; /* ada jeda 0.5 detik */
+    transform: translateY(40px);
+    transition: all 1.2s ease-out 0.4s;
 }
 
 #main-content[style*="display: block"] .reveal-delay {
     opacity: 1;
     transform: translateY(0);
 }
+
 
         /* Hero Image */
         .hero-img { height: 100dvh; object-fit: cover; width: 100%; }
@@ -545,58 +546,39 @@ section {
             document.getElementById('guest-name').innerHTML = to.replace(/\n/g, '<br>');
         }
 
-        function startInvitation() {
+        
+function startInvitation() {
     const cover = document.getElementById('cover');
     const main = document.getElementById('main-content');
     const music = document.getElementById('music');
 
-    // 1. Langsung putar musik
-    if (music) {
-        music.play();
-    }
+    if (music) music.play();
 
-    // 2. Beri efek transisi pada sampul agar tidak kaku
+    // Hilangkan cover dengan animasi halus
     cover.style.opacity = '0';
-    cover.style.transition = 'opacity 1s ease, transform 1s ease';
-    cover.style.transform = 'scale(1.1)'; // Efek zoom out sedikit
+    cover.style.transition = 'opacity 1s ease';
 
     setTimeout(() => {
-        // 3. Sembunyikan sampul total dan munculkan konten utama
         cover.style.display = 'none';
+        
+        // Munculkan main content
         main.style.display = 'block';
         
-        // 4. BUKA KUNCI SCROLL (PENTING!)
-        // Hapus class 'lock-scroll' dan paksa overflow menjadi auto
+        // Hapus class pengunci scroll pada body
         document.body.classList.remove('lock-scroll');
         document.body.style.overflow = 'auto';
-        document.documentElement.style.overflow = 'auto';
-
-        // 5. Reset posisi scroll ke paling atas agar tidak nyangkut di tengah
-        window.scrollTo(0, 0);
 
         setTimeout(() => {
-            // 6. Munculkan konten utama perlahan
             main.style.opacity = '1';
-
-            // 7. AKTIFKAN ULANG AOS (PENTING!)
-            // AOS perlu di-refresh agar tahu elemen sudah tidak 'display: none' lagi
+            
+            // Opsional: Tetap jalankan AOS refresh untuk jaga-jaga
             if (typeof AOS !== 'undefined') {
                 AOS.init();
-                AOS.refreshHard(); 
+                AOS.refresh();
             }
-        }, 100);
-
-        // 8. Opsi tambahan: Hapus elemen cover dari sistem agar HP makin ringan
-        setTimeout(() => {
-            cover.remove();
-        }, 1000);
-
-    }, 1000); // Waktu tunggu sesuai durasi transisi opacity sampul
+        }, 50);
+    }, 1000);
 }
-
-
-
-
 
 
 
