@@ -51,6 +51,19 @@ body:not(.lock-scroll) {
     transition: all 1s ease-in-out !important;
 }
 
+        /* Pastikan body bisa di-scroll setelah buka */
+body.bisa-scroll {
+    overflow: auto !important;
+    height: auto !important;
+    position: relative !important;
+}
+
+/* Supaya main-content munculnya halus */
+#main-content {
+    transition: opacity 1s ease-in-out;
+}
+
+
 
 
         /* Mencegah glitch transparan pada background saat scroll */
@@ -559,37 +572,33 @@ function startInvitation() {
     const main = document.getElementById('main-content');
     const music = document.getElementById('music');
 
+    // 1. Mainkan Musik
     if (music) music.play();
 
-    // 1. Efek tutup tirai
-    cover.classList.add('cover-hidden');
+    // 2. Hilangkan Cover
+    cover.style.opacity = '0';
+    cover.style.transition = 'opacity 1s ease';
 
     setTimeout(() => {
-        // 2. Munculkan konten utama
+        // 3. Matikan cover total & munculkan main
         cover.style.display = 'none';
         main.style.display = 'block';
         
-        // 3. BUKA KUNCI SCROLL (Paling Penting)
+        // 4. JEBOL KUNCI SCROLL
         document.body.classList.remove('lock-scroll');
-        document.body.style.overflow = 'auto';
-        document.documentElement.style.overflow = 'auto';
-
-        // 4. Reset Scroll ke atas
-        window.scrollTo(0, 0);
-
+        document.body.classList.add('bisa-scroll');
+        
+        // 5. PAKSA AOS JALAN LAGI
         setTimeout(() => {
             main.style.opacity = '1';
+            window.scrollTo(0, 0); // Balik ke atas
 
-            // 5. PAKSA SEMUA ANIMASI AOS JALAN
-            const aosElements = main.querySelectorAll('[data-aos]');
-            aosElements.forEach((el) => {
-                el.classList.add('aos-animate'); // Class standar AOS untuk mulai animasi
-                el.classList.add('force-reveal'); // Backup dari CSS kita tadi
-            });
-
-            // 6. Refresh AOS sistem
             if (typeof AOS !== 'undefined') {
-                AOS.refreshHard();
+                AOS.init({
+                    duration: 1000,
+                    once: true
+                });
+                AOS.refreshHard(); // Ini perintah paling kuat di AOS
             }
         }, 100);
     }, 1000);
