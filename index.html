@@ -522,36 +522,38 @@ section {
     const main = document.getElementById('main-content');
     const music = document.getElementById('music');
 
-    // 1. Langsung mainkan musik agar tidak delay
     if(music) music.play();
 
-    // 2. Beri transisi cepat pada cover
+    // 1. Hilangkan cover secara visual dulu
     cover.style.opacity = '0';
-    cover.style.transform = 'scale(1.1)';
+    cover.style.transition = 'opacity 1s ease';
 
-    // 3. Tampilkan kontainer utama tepat sebelum sampul hilang
     setTimeout(() => {
+        // 2. Tampilkan main content
+        cover.style.display = 'none';
         main.style.display = 'block';
         
-        // Memaksa browser menghitung ulang posisi (mengatasi scroll macet)
-        window.scrollTo(0, 0); 
-        
+        // 3. Beri sedikit jeda agar browser selesai merender 'display: block'
         setTimeout(() => {
             main.style.opacity = '1';
-            // Hapus class kunci scroll
+            
+            // 4. SOLUSI UTAMA: Inisialisasi ulang AOS di sini
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    mirror: false
+                });
+                AOS.refreshHard(); // Memaksa AOS menghitung ulang posisi elemen
+            }
+            
+            // Buka scroll
             document.body.classList.remove('lock-scroll');
             document.body.style.overflow = 'auto';
-        }, 50);
-    }, 400);
-
-    // 4. Hapus total elemen cover dari memori setelah animasi selesai
-    setTimeout(() => {
-        cover.remove(); // Ini akan membebaskan RAM HP secara signifikan
-        if (window.AOS) {
-            AOS.refreshHard();
-        }
-    }, 1200);
+        }, 100); 
+    }, 1000);
 }
+
 
 
 
