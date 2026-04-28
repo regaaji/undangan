@@ -202,27 +202,45 @@ section {
 .delay-2 { transition-delay: 0.6s; }
 
 
-        .bg-custom-rumah {
-    /* Ganti 'gambar-rumah.jpg' dengan nama file gambar rumah Mas */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('gambar-rumah.jpg');
+        /* Section dengan Background Gambar */
+.section-rumah {
+    position: relative;
+    background-image: url('gambar-rumah.jpg'); /* Pastikan nama file sesuai */
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Memberi efek parallax saat di-scroll */
-    color: white !important; /* Memastikan semua teks di dalam section ini jadi putih */
+    background-attachment: fixed;
+    padding: 80px 20px;
 }
 
-/* Mengatur kontras teks spesifik agar lebih tegas */
-.bg-custom-rumah h2, .bg-custom-rumah p {
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+/* Overlay Gelap: Kunci agar tulisan kontras */
+.section-rumah::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
+    z-index: 1;
 }
 
-/* Mengatur kotak ayat agar sedikit transparan tapi tetap kontras */
-.ayat-box-custom {
+/* Kontainer konten agar di atas overlay */
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+}
+
+/* Styling Tulisan Estetik */
+.text-estetik {
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    letter-spacing: 1px;
+}
+
+.ayat-box {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 20px;
-    border-radius: 15px;
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 30px;
 }
 
 
@@ -300,39 +318,32 @@ section {
 
         
 
-        <section class="section-padding text-center relative overflow-hidden" style="background-image: url('gambar-rumah.jpg'); background-size: cover; 
-         background-position: center; background-attachment: fixed;">
-            
+        <section class="section-rumah">
+    <div class="content-wrapper max-w-3xl mx-auto text-center">
+        
+        <div data-aos="fade-up">
+            <h2 class="font-aesthetic text-4xl mb-2 text-estetik">Assalamu’alaikum Wr. Wb.</h2>
+            <p class="text-sm opacity-90 text-estetik mb-10">
+                Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.
+            </p>
+        </div>
 
-            <div class="max-w-3xl mx-auto px-4 relative z-10">
-                
-                <div class="mb-12">
-                    <p class="uppercase tracking-[0.4em] text-[10px] md:text-xs text-blue-500 font-semibold mb-2 muncul-setelah-buka">The Wedding of</p>
-                    <h2 id="ani-nama" class="font-aesthetic text-6xl md:text-7xl text-blue-700 leading-tight muncul-setelah-buka delay-1">Rega & Safa</h2>
-                    <div class="flex justify-center items-center gap-4 mt-3">
-                        <div class="h-[1px] w-12 bg-blue-300"></div>
-                        <i class="fas fa-heart text-blue-300 text-xs"></i>
-                        <div class="h-[1px] w-12 bg-blue-300"></div>
-                    </div>
-                </div>
-
-                <p id="ani-tgl" class="text-3xl md:text-4xl mb-6 font-serif tracking-wide text-blue-900 reveal">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
-                <p class="text-sm md:text-base italic text-slate-600 mb-12 reveal-delay">Assalamu’alaikum Warahmatullahi Wabarakatuh</p>
-                
-                <p class="text-sm md:text-base mb-12 leading-relaxed px-4 border-l-2 border-blue-100 ml-4 mr-4 py-2 opacity-90">
-                    Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri momen istiadat penyatuan cinta kami:
-                </p>
-
-                <div class="mb-6 text-xl md:text-2xl leading-loose font-serif px-2 text-blue-950 bg-blue-50/50 p-6 rounded-2xl shadow-inner">
-                    وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ
-                </div>
-                
-                <p class="text-xs md:text-sm leading-relaxed text-slate-600 italic px-4 mt-6 glass-card">
-                    "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir." <br>
-                    <span class="font-bold mt-2 block">(QS. Ar-Rum: 21)</span>
-                </p>
+        <div class="ayat-box" data-aos="zoom-in">
+            <div class="font-arabic text-3xl mb-6 leading-loose text-white">
+                وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً ۚ
             </div>
-        </section>
+            
+            <div class="h-[1px] w-20 bg-white/30 mx-auto mb-6"></div>
+
+            <p class="text-sm italic font-light leading-relaxed">
+                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang."
+            </p>
+            <p class="text-xs mt-4 font-bold opacity-70">(QS. Ar-Rum: 21)</p>
+        </div>
+
+    </div>
+</section>
+
 
         
         
