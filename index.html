@@ -6,7 +6,7 @@
     <title>Undangan Pernikahan - Rega & Safa</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;400;600&family=Amiri&display=swap" rel="stylesheet">
 
@@ -15,30 +15,12 @@
         .font-aesthetic { font-family: 'Sacramento', cursive; }
         .font-arabic { font-family: 'Amiri', serif; }
         
-        /* Kunci scroll awal */
         .lock-scroll { overflow: hidden; height: 100vh; position: fixed; width: 100%; }
 
-        /* --- TRICK UTAMA AGAR AOS JALAN --- */
-        #main-content {
-            opacity: 0;
-            visibility: hidden;
-            height: 0;
-            overflow: hidden;
-            transition: opacity 1s ease;
-        }
-
-        /* Saat kelas ini aktif, konten muncul dan bisa di-scroll */
-        .show-content {
-            opacity: 1 !important;
-            visibility: visible !important;
-            height: auto !important;
-            overflow: visible !important;
-        }
-
-        /* Background Terang Gambar Rumah */
+        /* Background Terang */
         .section-rumah {
             position: relative;
-            background-image: url('gambar-rumah.jpg'); /* Pastikan file ada */
+            background-image: url('foto1.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -48,7 +30,6 @@
             align-items: center;
         }
 
-        /* Overlay Putih Transparan (TERANG) */
         .section-rumah::before {
             content: "";
             position: absolute;
@@ -76,14 +57,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 1s ease-in-out, opacity 1s ease;
+            transition: all 1s ease-in-out;
         }
+
+        /* Helper class agar tidak muncul sebelum animasi */
+        .hidden-start { opacity: 0; }
     </style>
 </head>
 <body class="lock-scroll">
 
     <div id="cover">
-        <div class="text-center">
+        <div class="text-center animate__animated animate__zoomIn">
             <p class="uppercase tracking-[0.3em] text-xs mb-4 text-blue-600">The Wedding of</p>
             <h1 class="font-aesthetic text-7xl text-blue-900 mb-10">Rega & Safa</h1>
             <button onclick="openInvitation()" class="bg-blue-700 text-white px-10 py-4 rounded-full shadow-xl hover:bg-blue-800 transition transform hover:scale-105">
@@ -92,7 +76,7 @@
         </div>
     </div>
 
-    <main id="main-content">
+    <main id="main-content" style="display: none;">
         
         <audio id="music" loop>
             <source src="https://www.mboxdrive.com/Beautiful%20In%20White.mp3" type="audio/mpeg">
@@ -101,12 +85,12 @@
         <section class="section-rumah">
             <div class="max-w-2xl mx-auto text-center w-full">
                 
-                <div data-aos="fade-up">
+                <div id="ani-judul" class="hidden-start">
                     <p class="uppercase tracking-[0.4em] text-[10px] text-blue-700 font-bold mb-2">The Wedding of</p>
                     <h2 class="font-aesthetic text-6xl text-blue-900 mb-12">Rega & Safa</h2>
                 </div>
 
-                <div class="glass-card" data-aos="zoom-in">
+                <div id="ani-box" class="glass-card hidden-start">
                     <div class="font-arabic text-4xl mb-8 text-blue-900">
                         بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
                     </div>
@@ -129,38 +113,42 @@
 
     </main>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // AOS di-init di awal agar dia bisa baca elemen yang visibility:hidden
-        AOS.init({
-            duration: 1200,
-            once: true
-        });
-
         function openInvitation() {
             const cover = document.getElementById('cover');
             const main = document.getElementById('main-content');
             const music = document.getElementById('music');
+            const aniJudul = document.getElementById('ani-judul');
+            const aniBox = document.getElementById('ani-box');
 
             if (music) music.play();
 
-            // Sembunyikan Cover
+            // 1. Hilangkan Cover
             cover.style.opacity = '0';
-            cover.style.transform = 'translateY(-100%)'; // Efek slide up
-
-            // Munculkan Main Content (Trik visibility)
-            main.classList.add('show-content');
-            
-            // Hapus pengunci scroll
-            document.body.classList.remove('lock-scroll');
-            document.body.style.overflow = 'auto';
-            document.documentElement.style.overflow = 'auto';
+            cover.style.transform = 'scale(1.2)';
 
             setTimeout(() => {
                 cover.style.display = 'none';
-                // Paksa AOS hitung ulang posisi karena height sekarang sudah auto
-                AOS.refresh();
-                window.scrollTo(0, 0);
+                main.style.display = 'block';
+                
+                // 2. Lepas Scroll
+                document.body.classList.remove('lock-scroll');
+                document.body.style.overflow = 'auto';
+
+                // 3. Tembakkan Animasi (Urutan satu per satu)
+                
+                // Judul muncul setelah 100ms
+                setTimeout(() => {
+                    aniJudul.classList.remove('hidden-start');
+                    aniJudul.classList.add('animate__animated', 'animate__fadeInDown');
+                }, 100);
+
+                // Box muncul setelah 600ms
+                setTimeout(() => {
+                    aniBox.classList.remove('hidden-start');
+                    aniBox.classList.add('animate__animated', 'animate__fadeInUp');
+                }, 600);
+
             }, 1000);
         }
     </script>
