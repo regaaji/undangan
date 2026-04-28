@@ -130,57 +130,27 @@ section {
             border-radius: 50%;
             opacity: 0.5;
         }
-        
-/* Sembunyikan scrollbar saat sampul aktif */
-body.no-scroll {
-    overflow: hidden;
+
+/* CSS UNTUK MENAHAN FRAME TERAKHIR & ANIMASI TEKS */
+#introVideo {
+    /* Menghindari flicker saat video selesai */
+    background-color: white; 
 }
 
-/* Animasi Muncul Halus */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Delay disesuaikan dengan video tirai terbuka (sekitar detik ke-3) */
-.animate-reveal {
+.animate-delayed-fade {
     opacity: 0;
-    animation: fadeInUp 2s ease-out forwards;
-    animation-delay: 3s; 
+    transform: translateY(20px);
+    animation: fadeInWithDelay 1.5s ease-out forwards;
+    /* Sesuaikan delay ini dengan durasi video tirai terbuka Anda */
+    animation-delay: 2s; 
 }
 
-/* Transisi menghilangkan cover */
-.cover-fade-out {
-    transform: translateY(-100%);
-    opacity: 0;
-    transition: all 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+@keyframes fadeInWithDelay {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-
-        
-#main-invitation {
-    width: 100%;
-    position: relative;
-    opacity: 0;
-    animation: fadeInContent 1.5s forwards;
-    animation-delay: 0.5s;
-}
-
-@keyframes fadeInContent {
-    to { opacity: 1; }
-}
-
-        /* Pastikan body tidak terkunci secara permanen */
-body {
-    min-height: 100vh;
-    -webkit-overflow-scrolling: touch; /* Untuk scroll halus di iPhone */
-}
-
-#main-invitation {
-    position: relative;
-    z-index: 1;
-}
-
-
         
         /* Hero Image */
         .hero-img { height: 100dvh; object-fit: cover; width: 100%; }
@@ -195,30 +165,40 @@ body {
 </head>
 <body class="lock-scroll leading-relaxed">
 
-
-
-
-<section id="cover" class="fixed inset-0 z-[999] flex items-center justify-center bg-blue-900 overflow-hidden">
-    <video id="opening-video" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-        <source src="1000261719.mp4" type="video/mp4">
+    <div id="cover" class="fixed inset-0 z-[9999] flex flex-col justify-center bg-black overflow-hidden transition-all duration-1000 ease-in-out px-4 py-8">
+    
+    <video id="introVideo" autoplay muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+        <source src="background1.mp4" type="video/mp4">
     </video>
     
-    <div class="absolute inset-0 bg-black/40 z-10"></div>
+    <div class="absolute inset-0 bg-white/10 z-10 pointer-events-none"></div>
 
-    <div id="cover-content" class="relative z-20 text-center text-white px-6">
-        <h1 class="font-aesthetic text-6xl mb-6">Rega & Safa</h1>
-        <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl mb-8">
-            <p class="text-xs mb-2">Kepada Yth:</p>
-            <h3 class="text-xl font-bold">[Nama Tamu]</h3>
+    <div class="text-center relative z-20 w-full flex-grow flex flex-col items-center justify-center gap-4 animate-delayed-fade">
+        
+        <div class="mb-2">
+            <h2 class="font-aesthetic text-5xl md:text-7xl text-slate-900 font-bold drop-shadow-sm leading-tight">
+                The Wedding of
+            </h2>
         </div>
-        <button onclick="openInvitation()" class="bg-blue-600 text-white font-bold px-10 py-4 rounded-full">
-            BUKA UNDANGAN
+        
+        <h1 class="font-aesthetic text-7xl md:text-9xl text-blue-900 font-extrabold mb-6 leading-tight drop-shadow-md">
+            Rega & Safa
+        </h1>
+        
+        <div class="mb-10 w-full">
+            <p class="text-[12px] md:text-base text-slate-700 mb-4 font-medium tracking-wide">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+            <div class="max-w-[300px] md:max-w-md mx-auto px-4 py-2 bg-white/60 backdrop-blur-sm rounded-lg border-b-2 border-blue-900/30">
+                <h3 id="guest-name" class="font-bold text-2xl md:text-4xl text-blue-950 font-serif italic">
+                    [Nama Tamu]
+                </h3>
+            </div>
+        </div>
+
+        <button onclick="startInvitation()" class="relative z-30 bg-blue-700 hover:bg-blue-800 text-white px-14 py-4 rounded-full shadow-xl transition active:scale-95 text-sm font-bold tracking-widest flex items-center gap-2 mx-auto border border-blue-900 transform hover:scale-105">
+            <i class="fas fa-envelope-open-text mr-1"></i> BUKA UNDANGAN
         </button>
     </div>
-</section>
-
-<div id="main-invitation" style="display: none;">
-    </div>
+  </div>
 
 
 
@@ -531,50 +511,31 @@ body {
             // Mengubah Enter (%0A) dari URL menjadi baris baru (<br>)
             document.getElementById('guest-name').innerHTML = to.replace(/\n/g, '<br>');
         }
-        
 
-        // 1. Paksa video putar saat halaman dimuat
-window.addEventListener('load', function() {
-    const video = document.getElementById('opening-video');
-    video.play().catch(error => {
-        console.log("Autoplay dicegah browser, video akan diputar manual.");
-    });
-});
-
-// Kunci scroll saat pertama kali dibuka
-document.body.style.overflow = "hidden";
-document.documentElement.style.overflow = "hidden";
-
-function openInvitation() {
+        function startInvitation() {
     const cover = document.getElementById('cover');
-    const mainContent = document.getElementById('main-invitation');
-    const video = document.getElementById('opening-video');
+    
+    // 1. Tambahkan class untuk animasi menutup tirai/cover
+    cover.classList.add('cover-hidden'); 
 
-    // 1. Putar musik & video (sebagai aksi user)
-    video.play(); 
+    // 2. Mainkan musik
+    const music = document.getElementById('music');
+    if(music) music.play();
 
-    // 2. Transisi Hilang
-    cover.style.transition = "all 0.8s ease-in-out";
-    cover.style.opacity = "0";
-    cover.style.transform = "scale(1.1)";
+    // 3. Buka kunci scroll body
+    document.body.classList.remove('lock-scroll');
 
-    // 3. PENGATURAN SCROLL (KRUSIAL)
+    // 4. PEMICU ANIMASI HERO (PENTING!)
+    // Memberi jeda 500ms agar cover mulai hilang dulu, baru teks muncul
     setTimeout(() => {
-        cover.style.display = "none"; // Hapus elemen sampul agar tidak menghalangi scroll
-        mainContent.style.display = "block"; // Tampilkan konten utama
-        
-        // Paksa body dan html bisa scroll kembali
-        document.body.style.overflow = "visible";
-        document.body.style.position = "static";
-        document.documentElement.style.overflow = "visible";
-        
-        // Refresh AOS jika ada
-        if (window.AOS) AOS.refresh();
-    }, 800);
+        AOS.refreshHard(); // Menghitung ulang semua posisi animasi
+    }, 500);
+
+    // Hapus cover setelah animasi selesai
+    setTimeout(() => {
+        cover.style.display = 'none';
+    }, 1500);
 }
-
-
-
 
 
 
